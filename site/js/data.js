@@ -20,7 +20,7 @@ window.THC_PRODUCTS = [
     image: 'https://images.unsplash.com/photo-1607082349566-187342175e2f?w=800&q=80',
     description: 'Handheld 1D/2D imager scanner with omnidirectional scanning for retail and healthcare.' },
   { id: 'p3',  brand: 'LOGITECH',  category: 'accessories',  name: 'Logitech MX Master 3S',        price: 99.99,  rating: 4.8, reviews: 48,
-    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800&q=80',
+    image: 'images/logitech-mx-master-3s.jpg',
     description: 'Advanced wireless mouse with ultra-quiet clicks, 8K DPI tracking, and customizable buttons.' },
   { id: 'p4',  brand: 'CANON',     category: 'printers',     name: 'Canon PIXMA G6020',            price: 299.99, rating: 4.0, reviews: 18,
     image: 'https://images.unsplash.com/photo-1585499583262-cc1ae1ab8ea0?w=800&q=80',
