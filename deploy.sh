@@ -2,10 +2,10 @@
 set -euo pipefail
 
 # ===== Config =====
-DOMAIN="thc.pom100.com"
-BUCKET="thc.pom100.com"
+DOMAIN="thc-egypt.org"
+BUCKET="thc-egypt.org"
 REGION="us-east-1"
-HOSTED_ZONE_ID="Z08409803K4RRNNI1EEBU"
+HOSTED_ZONE_ID="Z01691553VW8I2G65I833"
 LAMBDA_NAME="thc-stripe-checkout"
 LAMBDA_ROLE_NAME="thc-stripe-checkout-role"
 
@@ -90,7 +90,7 @@ rm -f /tmp/thc-lambda.zip
 if aws lambda get-function --function-name "$LAMBDA_NAME" >/dev/null 2>&1; then
   say "Updating Lambda code"
   aws lambda update-function-code --function-name "$LAMBDA_NAME" --zip-file fileb:///tmp/thc-lambda.zip --publish >/dev/null
-  sleep 3
+  aws lambda wait function-updated --function-name "$LAMBDA_NAME"
   aws lambda update-function-configuration --function-name "$LAMBDA_NAME" \
     --environment "Variables={STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY,ALLOWED_ORIGIN=https://$DOMAIN}" >/dev/null
 else

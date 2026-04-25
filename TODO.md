@@ -10,12 +10,12 @@
 - [ ] Create Lambda for Stripe Checkout Sessions
 
 ## Deploy
-- [ ] Request ACM cert for thc.pom100.com (us-east-1)
-- [ ] Create DNS validation record in Route53
-- [ ] Wait for cert ISSUED
-- [ ] Create S3 bucket thc.pom100.com
-- [ ] Upload site to S3
-- [ ] Package & deploy Lambda, enable Function URL
-- [ ] Create CloudFront distribution with cert + S3 origin
-- [ ] Create Route53 A-alias record thc.pom100.com → CloudFront
+- [x] Request ACM cert for thc-egypt.org (us-east-1)
+- [x] Create DNS validation record in Route53
+- [x] Wait for cert ISSUED
+- [x] Create S3 bucket thc-egypt.org
+- [x] Upload site to S3
+- [x] Package & deploy Lambda, enable Function URL
+- [x] Create CloudFront distribution with cert + S3 origin
+- [x] Create Route53 A-alias record thc-egypt.org → CloudFront
 - [ ] Test end-to-end (site load, add to cart, checkout, Stripe page)

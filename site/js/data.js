@@ -14,7 +14,7 @@ window.THC_BRANDS = ['CANON','EPSON','ZEBRA','HONEYWELL','FUJITSU','LOGITECH','H
 
 window.THC_PRODUCTS = [
   { id: 'p1',  brand: 'HP',        category: 'printers',     name: 'HP LaserJet Pro M404n',       price: 299.00, oldPrice: 349.00, rating: 4.0, reviews: 24, sale: true,
-    image: 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=800&q=80',
+    image: 'images/hp-m404n.jpg',
     description: 'Fast, reliable monochrome laser printer ideal for small and medium businesses. Print speeds up to 40 ppm with built-in Ethernet networking.' },
   { id: 'p2',  brand: 'ZEBRA',     category: 'scanners',     name: 'Zebra DS2208 Barcode Scanner', price: 179.00, rating: 5.0, reviews: 31,
     image: 'https://images.unsplash.com/photo-1607082349566-187342175e2f?w=800&q=80',
