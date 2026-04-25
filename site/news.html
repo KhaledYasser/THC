@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>News — Technology Hall</title>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<header class="header">
+  <a class="logo" href="index.html">TECHNOLOGY HALL</a>
+  <nav class="nav">
+    <a href="index.html">HOME</a><a href="products.html">PRODUCTS</a>
+    <a href="categories.html">CATEGORIES</a><a href="services.html">SERVICES</a>
+    <a href="partners.html">PARTNERS</a><a href="news.html" class="active">NEWS</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="cart-btn" aria-label="Cart">🛒<span class="cart-count">0</span></button>
+    <button class="burger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<div class="page-hero"><h1>Latest News</h1><p>Updates, launches, and insights from Technology Hall.</p></div>
+
+<section class="section">
+  <div class="news-grid">
+    <article class="news-card">
+      <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=80" alt=""/>
+      <div class="body">
+        <div class="date">MAR 12, 2025</div>
+        <h3>Technology Hall Expands Distribution Network in Egypt</h3>
+        <p>We've opened two new regional distribution centers in Alexandria and Aswan to serve customers faster than ever.</p>
+      </div>
+    </article>
+    <article class="news-card">
+      <img src="https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80" alt=""/>
+      <div class="body">
+        <div class="date">FEB 28, 2025</div>
+        <h3>New Smart Home Product Line Launching This Spring</h3>
+        <p>Our smart home catalog is expanding with intelligent lighting, thermostats, and security devices from top brands.</p>
+      </div>
+    </article>
+    <article class="news-card">
+      <img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?w=800&q=80" alt=""/>
+      <div class="body">
+        <div class="date">FEB 10, 2025</div>
+        <h3>Exclusive HP Partnership Expands Enterprise Offerings</h3>
+        <p>A new strategic agreement with HP enables us to offer broader enterprise printing and managed print services.</p>
+      </div>
+    </article>
+    <article class="news-card">
+      <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=800&q=80" alt=""/>
+      <div class="body">
+        <div class="date">JAN 20, 2025</div>
+        <h3>Integrated Surveillance Solutions for Retail</h3>
+        <p>Our new integrated CCTV + POS package helps retailers reduce loss and optimize store operations.</p>
+      </div>
+    </article>
+    <article class="news-card">
+      <img src="https://images.unsplash.com/photo-1606161290889-77950cfb67d8?w=800&q=80" alt=""/>
+      <div class="body">
+        <div class="date">JAN 5, 2025</div>
+        <h3>Wi-Fi 6 Rollout for SMB Customers</h3>
+        <p>Upgrade your wireless infrastructure to Wi-Fi 6 with our new Aruba Instant On bundles at special launch pricing.</p>
+      </div>
+    </article>
+    <article class="news-card">
+      <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&q=80" alt=""/>
+      <div class="body">
+        <div class="date">DEC 18, 2024</div>
+        <h3>Document Scanning Solutions for Egyptian Banks</h3>
+        <p>Supporting digital transformation in banking with high-volume Fujitsu and Canon scanners.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div><div class="logo" style="color:#fff;">TECHNOLOGY HALL</div><p class="desc">Leading IT supplier in Egypt.</p></div>
+    <div><h4>SHOP</h4><ul><li><a href="products.html">All Products</a></li></ul></div>
+    <div><h4>COMPANY</h4><ul><li><a href="services.html">Services</a></li></ul></div>
+    <div><h4>CONTACT</h4><ul><li>📍 Cairo, Egypt</li></ul></div>
+  </div>
+  <div class="bottom">© <span id="yr"></span> Technology Hall.</div>
+</footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Services — Technology Hall</title>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<header class="header">
+  <a class="logo" href="index.html">TECHNOLOGY HALL</a>
+  <nav class="nav">
+    <a href="index.html">HOME</a><a href="products.html">PRODUCTS</a>
+    <a href="categories.html">CATEGORIES</a><a href="services.html" class="active">SERVICES</a>
+    <a href="partners.html">PARTNERS</a><a href="news.html">NEWS</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="cart-btn" aria-label="Cart">🛒<span class="cart-count">0</span></button>
+    <button class="burger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<div class="page-hero"><h1>Our Services</h1><p>Comprehensive IT services tailored to your business.</p></div>
+
+<section class="section dark">
+  <div class="services">
+    <div class="service">
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 7h13v10H3zM16 10h4l2 3v4h-6zM5.5 17a2 2 0 104 0M16.5 17a2 2 0 104 0"/></svg></div>
+      <h3>Supply &amp; Distribution</h3>
+      <p>We supply and distribute a comprehensive range of IT products, printers, scanners, and accessories across Egypt, ensuring timely delivery and reliable service to businesses of all sizes.</p>
+    </div>
+    <div class="service">
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 01-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 015.6-5.6l-2.5 2.5-2.1-2.1 2.6-2.4z"/></svg></div>
+      <h3>Technical Support</h3>
+      <p>Our certified technicians provide expert installation, maintenance, and repair services for all the products we carry. We offer both on-site and remote support to minimize downtime.</p>
+    </div>
+    <div class="service">
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 21V7l9-4 9 4v14M9 21V11h6v10M3 21h18"/></svg></div>
+      <h3>Enterprise Solutions</h3>
+      <p>From small offices to large enterprises, we design and implement complete IT infrastructure solutions including networking, printing fleets, document management, and smart office automation.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Additional Services</h2><div class="underline"></div></div>
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:30px;">
+    <div style="padding:24px;border:1px solid #eee;border-radius:4px;">
+      <h3 style="margin-bottom:10px;">Managed Print Services</h3>
+      <p style="color:#666;">Optimize and manage your entire print environment with our MPS program. Reduce costs, improve productivity, and ensure your fleet is always ready.</p>
+    </div>
+    <div style="padding:24px;border:1px solid #eee;border-radius:4px;">
+      <h3 style="margin-bottom:10px;">Network Installation</h3>
+      <p style="color:#666;">Design and install secure, high-performance wired and wireless networks for offices, hotels, warehouses, and retail stores.</p>
+    </div>
+    <div style="padding:24px;border:1px solid #eee;border-radius:4px;">
+      <h3 style="margin-bottom:10px;">Video Surveillance</h3>
+      <p style="color:#666;">End-to-end CCTV solutions — from camera selection and placement to NVR configuration and remote monitoring.</p>
+    </div>
+    <div style="padding:24px;border:1px solid #eee;border-radius:4px;">
+      <h3 style="margin-bottom:10px;">Training &amp; Consultation</h3>
+      <p style="color:#666;">Our experts train your team on the products you buy and help you plan future IT investments aligned with your business goals.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div><div class="logo" style="color:#fff;">TECHNOLOGY HALL</div><p class="desc">Leading IT supplier in Egypt.</p></div>
+    <div><h4>SHOP</h4><ul><li><a href="products.html">All Products</a></li></ul></div>
+    <div><h4>COMPANY</h4><ul><li><a href="services.html">Services</a></li><li><a href="partners.html">Partners</a></li></ul></div>
+    <div><h4>CONTACT</h4><ul><li>📍 Cairo, Egypt</li></ul></div>
+  </div>
+  <div class="bottom">© <span id="yr"></span> Technology Hall.</div>
+</footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

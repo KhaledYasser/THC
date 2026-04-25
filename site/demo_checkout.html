@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Complete Payment — Technology Hall</title>
+<link rel="stylesheet" href="css/style.css"/>
+<style>
+  body { background: #f4f4f7; }
+  .pay-wrap { max-width: 480px; margin: 60px auto; background: #fff; padding: 36px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,.08); }
+  .brand-bar { display:flex; align-items:center; justify-content:space-between; margin-bottom: 26px; }
+  .logo-sm { font-weight: 900; letter-spacing: 2px; font-size: 14px; color: #1a1a1a; }
+  .stripe-badge { font-size: 12px; color: #635bff; font-weight: 700; }
+  .pay-title { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .pay-amount { font-size: 32px; font-weight: 800; color: #111; margin-bottom: 22px; }
+  .pay-field { margin-bottom: 14px; }
+  .pay-field label { display:block; font-size: 12px; color:#555; margin-bottom: 4px; font-weight: 600; }
+  .pay-field input { width: 100%; padding: 12px 14px; border: 1px solid #e0e0e0; border-radius: 6px; font-size: 15px; }
+  .pay-field input:focus { outline:none; border-color:#635bff; box-shadow: 0 0 0 3px rgba(99,91,255,.15); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pay-btn { width: 100%; background: #635bff; color: #fff; border: none; padding: 14px; border-radius: 6px; font-size: 16px; font-weight: 700; margin-top: 10px; cursor: pointer; }
+  .pay-btn:hover { background: #5046e5; }
+  .pay-btn:disabled { opacity: .6; }
+  .hint { background: #fffbe6; border: 1px solid #ffe58f; color: #614700; padding: 10px 14px; border-radius: 6px; font-size: 13px; margin-bottom: 18px; }
+  .secure { text-align:center; margin-top: 14px; color: #888; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="pay-wrap">
+  <div class="brand-bar">
+    <span class="logo-sm">TECHNOLOGY HALL</span>
+    <span class="stripe-badge">DEMO · Secure Checkout</span>
+  </div>
+  <div class="pay-title">Pay with card</div>
+  <div class="pay-amount" id="amount">$0.00</div>
+
+  <div class="hint">🧪 <strong>Demo mode</strong> — any card data will be accepted. Use test card <code>4242 4242 4242 4242</code>, any future date, any CVC.</div>
+
+  <form id="pay-form" onsubmit="event.preventDefault(); completePayment();">
+    <div class="pay-field">
+      <label>Email</label>
+      <input id="pay-email" required type="email" placeholder="you@example.com"/>
+    </div>
+    <div class="pay-field">
+      <label>Card number</label>
+      <input id="pay-card" required placeholder="1234 1234 1234 1234" inputmode="numeric" maxlength="19"/>
+    </div>
+    <div class="row">
+      <div class="pay-field">
+        <label>Expiry (MM/YY)</label>
+        <input id="pay-exp" required placeholder="12/29" maxlength="5"/>
+      </div>
+      <div class="pay-field">
+        <label>CVC</label>
+        <input id="pay-cvc" required placeholder="123" inputmode="numeric" maxlength="4"/>
+      </div>
+    </div>
+    <div class="pay-field">
+      <label>Name on card</label>
+      <input id="pay-name" required placeholder="Full name"/>
+    </div>
+    <button class="pay-btn" id="pay-submit" type="submit">Pay <span id="btn-amount"></span></button>
+  </form>
+  <div class="secure">🔒 Payments are processed securely.</div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  function qs(n){return new URLSearchParams(location.search).get(n);}
+  const amt = parseFloat(qs('amount') || '0');
+  const sessionId = qs('sid') || ('demo_' + Date.now());
+  document.getElementById('amount').textContent = '$' + amt.toFixed(2);
+  document.getElementById('btn-amount').textContent = '$' + amt.toFixed(2);
+
+  // Formatting helpers
+  const card = document.getElementById('pay-card');
+  card.addEventListener('input', () => {
+    let v = card.value.replace(/\D/g,'').slice(0,16);
+    card.value = v.replace(/(\d{4})(?=\d)/g, '$1 ');
+  });
+  const exp = document.getElementById('pay-exp');
+  exp.addEventListener('input', () => {
+    let v = exp.value.replace(/\D/g,'').slice(0,4);
+    if (v.length >= 3) v = v.slice(0,2) + '/' + v.slice(2);
+    exp.value = v;
+  });
+
+  function completePayment(){
+    const btn = document.getElementById('pay-submit');
+    btn.disabled = true; btn.textContent = 'Processing...';
+    // Simulate payment processing delay
+    setTimeout(() => {
+      location.href = 'success.html?session_id=' + encodeURIComponent(sessionId);
+    }, 1500);
+  }
+</script>
+</body>
+</html>
