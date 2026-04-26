@@ -11,6 +11,7 @@
   --card-fg: #222;
   --border: #eee;
   --danger: #e74c3c;
+  --overlay: rgba(0,0,0,0.65);
 }
 html, body { height: 100%; }
 body {
@@ -96,6 +97,47 @@ button { cursor: pointer; font-family: inherit; }
 .row-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 30px; }
 .row-head h2 { font-size: 32px; font-weight: 800; }
 .row-head a { color: var(--accent); font-weight: 700; font-size: 14px; letter-spacing: 2px; }
+
+/* ============ New Homepage Sections ============ */
+.vision-mission {
+  background: linear-gradient(var(--overlay), var(--overlay)), url('../images/vision_mission_bg.png') center/cover fixed;
+  color: #fff;
+}
+.vision-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.vision-item {
+  background: rgba(255,255,255,0.05);
+  padding: 40px;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.vision-item h3 { color: var(--accent); margin-bottom: 15px; font-size: 24px; }
+
+.shop-by-category {
+  background: linear-gradient(var(--overlay), var(--overlay)), url('../images/category_bg.png') center/cover fixed;
+  color: #fff;
+}
+.shop-by-category .section-head h2 { color: #fff; }
+
+.news-section {
+  background: linear-gradient(var(--overlay), var(--overlay)), url('../images/news_bg.png') center/cover fixed;
+  color: #fff;
+}
+.news-section .section-head h2 { color: #fff; }
+
+.brands-section {
+  background: #f9f9f9;
+}
+.featured-products {
+  background: #fff;
+}
+
 
 /* ============ Categories grid ============ */
 .cat-grid {

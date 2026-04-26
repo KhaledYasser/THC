@@ -75,6 +75,26 @@
     el.innerHTML = window.THC_PRODUCTS.slice(0, 8).map(productCard).join('');
   }
 
+  function renderNewsHome() {
+    const el = document.getElementById('news-grid-home');
+    if (!el) return;
+    // Mock news data or fetch if available. For now, using static content.
+    const news = [
+        { date: 'OCT 24, 2023', title: 'New Canon MegaTank Lineup Arrives', desc: 'Discover the latest high-efficiency printers from Canon, now in stock at Technology Hall.' },
+        { date: 'OCT 20, 2023', title: 'The Future of POS Systems', desc: 'How cloud-integrated POS solutions are transforming retail across Egypt.' },
+        { date: 'OCT 15, 2023', title: 'IT Infrastructure Trends 2024', desc: 'Stay ahead with our latest guide on modernizing your business IT environment.' }
+    ];
+    el.innerHTML = news.map(n => `
+        <div class="news-card">
+            <div class="body">
+                <div class="date">${n.date}</div>
+                <h3>${n.title}</h3>
+                <p>${n.desc}</p>
+            </div>
+        </div>
+    `).join('');
+  }
+
   function renderLatest() {
     const el = document.getElementById('latest-grid');
     if (!el) return;
@@ -276,6 +296,7 @@
     renderFeatured();
     renderLatest();
     renderBrands();
+    renderNewsHome();
     renderProducts();
     renderProductDetail();
     renderCart();
