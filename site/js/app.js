@@ -10,7 +10,7 @@
       const products = window.THC_PRODUCTS || [];
       return this.load().reduce((sum, it) => {
         const p = products.find(x => x.id === it.id);
-        return sum + (p ? p.price * it.qty : 0);
+        return sum + (p ? (p.price || 0) * it.qty : 0);
       }, 0);
     },
     add(id, qty = 1) {
@@ -63,7 +63,7 @@
           <div class="brand">${p.brand}</div>
           <div class="title">${p.name}</div>
           <div class="rating">${renderStars(p.rating)} <span class="count">(${p.reviews})</span></div>
-          <div class="price">$${p.price.toFixed(2)} ${p.oldPrice ? `<span class="old">$${p.oldPrice.toFixed(2)}</span>` : ''}</div>
+          ${p.price !== undefined ? `<div class="price">$${p.price.toFixed(2)} ${p.oldPrice ? `<span class="old">$${p.oldPrice.toFixed(2)}</span>` : ''}</div>` : ''}
         </div>
       </a>
     `;
@@ -155,7 +155,7 @@
         <div class="brand">${p.brand}</div>
         <h1>${p.name}</h1>
         <div class="rating">${renderStars(p.rating)} <span class="count" style="color:#888">(${p.reviews} reviews)</span></div>
-        <div class="price">$${p.price.toFixed(2)} ${p.oldPrice ? `<span class="old">$${p.oldPrice.toFixed(2)}</span>` : ''}</div>
+        ${p.price !== undefined ? `<div class="price">$${p.price.toFixed(2)} ${p.oldPrice ? `<span class="old">$${p.oldPrice.toFixed(2)}</span>` : ''}</div>` : ''}
         <p class="desc">${p.description}</p>
         <div class="qty">
           <button id="qty-dec" type="button">−</button>
@@ -222,7 +222,7 @@
               <div><strong>${p.name}</strong><br/><span style="color:#888;font-size:12px">${p.brand}</span></div>
             </div>
           </td>
-          <td>$${p.price.toFixed(2)}</td>
+          <td>${p.price !== undefined ? `$${p.price.toFixed(2)}` : '—'}</td>
           <td>
             <div class="qty">
               <button class="dec" type="button">−</button>
@@ -230,7 +230,7 @@
               <button class="inc" type="button">+</button>
             </div>
           </td>
-          <td>$${(p.price * it.qty).toFixed(2)}</td>
+          <td>${p.price !== undefined ? `$${(p.price * it.qty).toFixed(2)}` : '—'}</td>
           <td><button class="remove">✕</button></td>
         </tr>
       `;

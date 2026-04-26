@@ -2,7 +2,7 @@ name: Deploy THC to AWS
 
 on:
   push:
-    branches: [main]
+    branches: [main, kimo]
   workflow_dispatch:
 
 env:
