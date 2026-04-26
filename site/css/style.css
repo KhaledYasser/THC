@@ -52,7 +52,7 @@ button { cursor: pointer; font-family: inherit; }
 /* ============ Hero ============ */
 .hero {
   min-height: 560px;
-  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.75)), url('https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=1920&q=80') center/cover;
+  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.75)), url('../images/server_room_hero.png') center/cover;
   color: #fff;
   display: flex; align-items: center; justify-content: center;
   text-align: center; padding: 60px 20px;
