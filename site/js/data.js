@@ -10,7 +10,7 @@ window.THC_CATEGORIES = [
   { id: 'networking', name: 'Networking', image: 'https://images.unsplash.com/photo-1606161290889-77950cfb67d8?w=800&q=80' }
 ];
 
-window.THC_BRANDS = ['CANON','EPSON','ZEBRA','HONEYWELL','FUJITSU','LOGITECH','HP'];
+window.THC_BRANDS = ['CANOCACONCON','EPSON','ZEBRA','HONEYWELL','FUJITSU','LOGITECH','HP'];
 
 window.THC_PRODUCTS = [
   { id: 'p1',  brand: 'HP',        category: 'printers',     name: 'HP LaserJet Pro M404n',       price: 299.00, oldPrice: 349.00, rating: 4.0, reviews: 24, sale: true,
