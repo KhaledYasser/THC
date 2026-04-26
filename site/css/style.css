@@ -53,11 +53,13 @@ button { cursor: pointer; font-family: inherit; }
 /* ============ Hero ============ */
 .hero {
   min-height: 560px;
-  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.75)), url('../images/server_room_hero.png') center/cover;
+  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.75)), url('../images/server_room_hero.png') center/cover no-repeat fixed;
   color: #fff;
   display: flex; align-items: center; justify-content: center;
   text-align: center; padding: 60px 20px;
 }
+.hero.main-hero { min-height: 100vh; }
+
 .hero .inner { max-width: 900px; }
 .hero .kicker {
   color: var(--accent); letter-spacing: 6px; font-size: 13px; font-weight: 600;
@@ -132,7 +134,22 @@ button { cursor: pointer; font-family: inherit; }
 .news-section .section-head h2 { color: #fff; }
 
 .brands-section {
-  background: #f9f9f9;
+  background: #fff;
+}
+.vendor-list {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1200px; margin: 0 auto;
+}
+.vendor-item {
+  display: flex; flex-direction: column; align-items: center; gap: 15px; width: 150px;
+}
+.vendor-item img {
+  width: 100px; height: 100px; object-fit: contain; filter: grayscale(100%); opacity: 0.6; transition: all 0.3s;
+}
+.vendor-item:hover img { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
+.vendor-item span { font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #888; }
+.vendor-placeholder {
+  width: 100px; height: 100px; background: #f0f0f0; display: flex; align-items: center; justify-content: center;
+  font-size: 40px; font-weight: 900; color: #ccc; border-radius: 50%;
 }
 .featured-products {
   background: #fff;

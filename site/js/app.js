@@ -84,14 +84,15 @@
         { date: 'OCT 20, 2023', title: 'The Future of POS Systems', desc: 'How cloud-integrated POS solutions are transforming retail across Egypt.' },
         { date: 'OCT 15, 2023', title: 'IT Infrastructure Trends 2024', desc: 'Stay ahead with our latest guide on modernizing your business IT environment.' }
     ];
-    el.innerHTML = news.map(n => `
-        <div class="news-card">
+    el.innerHTML = news.map((n, idx) => `
+        <a href="news-detail.html?id=${idx + 1}" class="news-card">
             <div class="body">
                 <div class="date">${n.date}</div>
                 <h3>${n.title}</h3>
                 <p>${n.desc}</p>
+                <span style="color:var(--accent);font-size:12px;font-weight:700;margin-top:10px;display:block;">READ MORE →</span>
             </div>
-        </div>
+        </a>
     `).join('');
   }
 
