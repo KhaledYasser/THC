@@ -16,6 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/translations.js"></script>
   <script src="js/tailwind-config.js"></script>
   <script>tailwind.config = window.THC_TAILWIND_CONFIG;</script>
   <link rel="stylesheet" href="css/style.css"/>
@@ -33,14 +34,14 @@
     </div>
     <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-16">
       <div class="max-w-2xl">
-        <span class="inline-block bg-tertiary-container/20 text-tertiary-fixed border border-tertiary-container rounded px-4 py-2 font-label-md text-label-md mb-6">Egypt's Premier Technology Provider</span>
-        <h1 class="font-headline-xl text-headline-xl text-on-error mb-6">Your Trusted Partner in IT and Smart Home Innovation</h1>
-        <p class="font-body-lg text-body-lg text-secondary-fixed-dim mb-8">Empowering businesses and homes with cutting-edge infrastructure, intelligent automation, and unparalleled support services.</p>
+        <span class="inline-block bg-tertiary-container/20 text-tertiary-fixed border border-tertiary-container rounded px-4 py-2 font-label-md text-label-md mb-6" data-i18n="hero_badge">Egypt's Premier Technology Provider</span>
+        <h1 class="font-headline-xl text-headline-xl text-on-error mb-6" data-i18n="hero_title">Your Trusted Partner in IT and Smart Home Innovation</h1>
+        <p class="font-body-lg text-body-lg text-secondary-fixed-dim mb-8" data-i18n="hero_desc">Empowering businesses and homes with cutting-edge infrastructure, intelligent automation, and unparalleled support services.</p>
         <div class="flex gap-4 flex-wrap">
           <a href="products.html" class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-surface-tint transition-colors shadow-lg shadow-primary/20 inline-flex items-center gap-2">
-            Explore Products <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            <span data-i18n="explore_products">Explore Products</span> <span class="material-symbols-outlined text-[18px] rtl:rotate-180">arrow_forward</span>
           </a>
-          <a href="services.html" class="bg-transparent text-on-error border border-outline font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-surface-variant/10 transition-colors inline-flex items-center gap-2">
+          <a href="services.html" class="bg-transparent text-on-error border border-outline font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-surface-variant/10 transition-colors inline-flex items-center gap-2" data-i18n="our_services">
             Our Services
           </a>
         </div>
@@ -51,8 +52,8 @@
   <!-- Browse by Category -->
   <section class="py-16 max-w-7xl mx-auto px-6">
     <div class="text-center mb-12">
-      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Browse by Category</h2>
-      <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Find the right hardware for your business.</p>
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3" data-i18n="browse_by_cat">Browse by Category</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto" data-i18n="browse_by_cat_desc">Find the right hardware for your business.</p>
     </div>
     <div id="cat-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
   </section>
@@ -62,16 +63,16 @@
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex justify-between items-end mb-12">
         <div>
-          <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Featured Products</h2>
-          <p class="font-body-md text-body-md text-on-surface-variant">Professional-grade hardware for demanding environments.</p>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2" data-i18n="featured_products">Featured Products</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="featured_products_desc">Professional-grade hardware for demanding environments.</p>
         </div>
         <a class="hidden md:inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:text-primary-container transition-colors" href="products.html">
-          View All Products <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          <span data-i18n="view_all_products">View All Products</span> <span class="material-symbols-outlined text-[16px] rtl:rotate-180">arrow_forward</span>
         </a>
       </div>
       <div id="featured-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
       <a class="md:hidden mt-8 flex items-center justify-center gap-2 text-primary font-label-md text-label-md" href="products.html">
-        View All Products <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        <span data-i18n="view_all_products">View All Products</span> <span class="material-symbols-outlined text-[16px] rtl:rotate-180">arrow_forward</span>
       </a>
     </div>
   </section>
@@ -79,24 +80,24 @@
   <!-- Vision & Mission (Bento Grid) -->
   <section class="py-16 max-w-7xl mx-auto px-6">
     <div class="text-center mb-12">
-      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Our Mission & Vision</h2>
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3" data-i18n="mission_vision">Our Mission & Vision</h2>
       <div class="w-16 h-1 bg-primary rounded mx-auto mb-4"></div>
-      <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">The principles that guide every product we distribute and every solution we deploy.</p>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto" data-i18n="mission_vision_intro">The principles that guide every product we distribute and every solution we deploy.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <!-- Mission (2/3 width) -->
       <div class="md:col-span-2 bg-surface-container rounded-xl p-10 border border-outline-variant/30 relative overflow-hidden group hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal">
-        <div class="absolute -top-4 -right-4 p-6 opacity-[0.07] group-hover:opacity-[0.12] transition-opacity pointer-events-none">
+        <div class="absolute -top-4 -right-4 p-6 opacity-[0.07] group-hover:opacity-[0.12] transition-opacity pointer-events-none rtl:right-auto rtl:-left-4">
           <span class="material-symbols-outlined text-primary" style="font-size:180px">rocket_launch</span>
         </div>
         <div class="relative z-10">
           <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
             <span class="material-symbols-outlined text-primary">flag</span>
           </div>
-          <h3 class="font-headline-lg text-headline-lg text-on-surface mb-3">Our Mission</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">To equip the Egyptian market with the most reliable IT and printing solutions — empowering businesses through cutting-edge technology, authentic hardware and exceptional long-term support.</p>
+          <h3 class="font-headline-lg text-headline-lg text-on-surface mb-3" data-i18n="our_mission">Our Mission</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed" data-i18n="our_mission_desc">To equip the Egyptian market with the most reliable IT and printing solutions — empowering businesses through cutting-edge technology, authentic hardware and exceptional long-term support.</p>
           <a href="about.html" class="inline-flex items-center gap-2 mt-5 text-primary font-label-md text-label-md hover:text-primary-container transition-colors">
-            Learn more about us <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            <span data-i18n="learn_more_about_us">Learn more about us</span> <span class="material-symbols-outlined text-[16px] rtl:rotate-180">arrow_forward</span>
           </a>
         </div>
       </div>
@@ -106,8 +107,8 @@
           <div class="w-12 h-12 bg-tertiary-container/20 rounded-lg flex items-center justify-center mb-6">
             <span class="material-symbols-outlined text-tertiary">visibility</span>
           </div>
-          <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Our Vision</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">To be the premier technology partner in Egypt — recognized for quality, innovation and measurable customer success.</p>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-3" data-i18n="our_vision">Our Vision</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" data-i18n="our_vision_desc">To be the premier technology partner in Egypt — recognized for quality, innovation and measurable customer success.</p>
         </div>
       </div>
     </div>
@@ -116,13 +117,13 @@
   <!-- Latest News -->
   <section class="py-16 max-w-7xl mx-auto px-6">
     <div class="text-center mb-12">
-      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Latest News</h2>
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3" data-i18n="latest_news">Latest News</h2>
       <div class="w-16 h-1 bg-primary rounded mx-auto mb-4"></div>
     </div>
     <div id="news-grid-home" class="grid grid-cols-1 md:grid-cols-3 gap-7"></div>
     <div class="text-center mt-10">
       <a href="news.html" class="inline-flex items-center gap-2 border border-outline text-on-surface font-label-md text-label-md px-6 py-3 rounded hover:bg-surface-container transition-colors">
-        View all news <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        <span data-i18n="view_all_news">View all news</span> <span class="material-symbols-outlined text-[18px] rtl:rotate-180">arrow_forward</span>
       </a>
     </div>
   </section>
@@ -130,10 +131,10 @@
   <!-- CTA Section -->
   <section class="py-20 bg-surface-container-low border-t border-outline-variant text-center">
     <div class="max-w-3xl mx-auto px-6">
-      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Need help finding the right product?</h2>
-      <p class="font-body-md text-body-md text-on-surface-variant mb-8">Browse the full category lineup, or reach out for a tailored recommendation from our sales engineers.</p>
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3" data-i18n="need_help_title">Need help finding the right product?</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-8" data-i18n="need_help_desc">Browse the full category lineup, or reach out for a tailored recommendation from our sales engineers.</p>
       <a href="categories.html" class="inline-flex items-center gap-2 bg-primary text-on-primary font-label-md text-label-md px-8 py-3 rounded hover:bg-surface-tint transition-all shadow-lg shadow-primary/20">
-        View by category <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        <span data-i18n="view_by_category">View by category</span> <span class="material-symbols-outlined text-[18px] rtl:rotate-180">arrow_forward</span>
       </a>
     </div>
   </section>

@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/translations.js"></script>
   <script src="js/tailwind-config.js"></script>
   <script>tailwind.config = window.THC_TAILWIND_CONFIG;</script>
   <link rel="stylesheet" href="css/style.css"/>
@@ -25,8 +26,8 @@
   <section class="relative py-24 px-6 bg-inverse-surface overflow-hidden">
     <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 70% 30%, #0000ff 0%, transparent 60%);"></div>
     <div class="max-w-7xl mx-auto relative z-10 text-center">
-      <h1 class="font-headline-xl text-headline-xl text-on-error mb-4">Enterprise-Grade <span class="text-primary">Services</span></h1>
-      <p class="font-body-lg text-body-lg text-secondary-fixed-dim max-w-2xl mx-auto">Delivering comprehensive technology solutions to power modern businesses and smart environments.</p>
+      <h1 class="font-headline-xl text-headline-xl text-on-error mb-4"><span data-i18n="enterprise_grade">Enterprise-Grade</span> <span class="text-primary" data-i18n="services">Services</span></h1>
+      <p class="font-body-lg text-body-lg text-secondary-fixed-dim max-w-2xl mx-auto" data-i18n="services_desc">Delivering comprehensive technology solutions to power modern businesses and smart environments.</p>
     </div>
   </section>
 
@@ -34,30 +35,30 @@
   <section class="py-16 bg-background">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-12">
-        <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Core Services</h2>
-        <p class="font-body-md text-body-md text-on-surface-variant">What we do best for our clients across Egypt.</p>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3" data-i18n="core_services">Core Services</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="core_services_desc">What we do best for our clients across Egypt.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="bg-inverse-surface rounded-xl p-10 text-center border border-white/10 reveal">
           <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
             <span class="material-symbols-outlined text-primary text-[32px]">local_shipping</span>
           </div>
-          <h3 class="text-white text-xl font-bold mb-3">Supply & Distribution</h3>
-          <p class="text-secondary-fixed-dim leading-relaxed">A comprehensive range of IT products, printers, scanners and accessories, distributed across Egypt with timely delivery and reliable service for businesses of all sizes.</p>
+          <h3 class="text-white text-xl font-bold mb-3" data-i18n="service_supply_title">Supply & Distribution</h3>
+          <p class="text-secondary-fixed-dim leading-relaxed" data-i18n="service_supply_desc">A comprehensive range of IT products, printers, scanners and accessories, distributed across Egypt with timely delivery and reliable service for businesses of all sizes.</p>
         </div>
         <div class="bg-inverse-surface rounded-xl p-10 text-center border border-white/10 reveal">
           <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
             <span class="material-symbols-outlined text-primary text-[32px]">build</span>
           </div>
-          <h3 class="text-white text-xl font-bold mb-3">Technical Support</h3>
-          <p class="text-secondary-fixed-dim leading-relaxed">Our certified technicians provide expert installation, maintenance and repair services. We offer both on-site and remote support to minimize downtime for your operation.</p>
+          <h3 class="text-white text-xl font-bold mb-3" data-i18n="service_support_title">Technical Support</h3>
+          <p class="text-secondary-fixed-dim leading-relaxed" data-i18n="service_support_desc">Our certified technicians provide expert installation, maintenance and repair services. We offer both on-site and remote support to minimize downtime for your operation.</p>
         </div>
         <div class="bg-inverse-surface rounded-xl p-10 text-center border border-white/10 reveal">
           <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
             <span class="material-symbols-outlined text-primary text-[32px]">apartment</span>
           </div>
-          <h3 class="text-white text-xl font-bold mb-3">Enterprise Solutions</h3>
-          <p class="text-secondary-fixed-dim leading-relaxed">From small offices to large enterprises, we design and implement complete IT infrastructure — networking, printing fleets, document management and smart office automation.</p>
+          <h3 class="text-white text-xl font-bold mb-3" data-i18n="service_enterprise_title">Enterprise Solutions</h3>
+          <p class="text-secondary-fixed-dim leading-relaxed" data-i18n="service_enterprise_desc">From small offices to large enterprises, we design and implement complete IT infrastructure — networking, printing fleets, document management and smart office automation.</p>
         </div>
       </div>
     </div>
@@ -67,25 +68,25 @@
   <section class="py-16 bg-surface-container-low border-y border-outline-variant">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-12">
-        <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Additional Services</h2>
-        <p class="font-body-md text-body-md text-on-surface-variant">Specialized offerings to complete your technology ecosystem.</p>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3" data-i18n="additional_services">Additional Services</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="additional_services_desc">Specialized offerings to complete your technology ecosystem.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-surface-container-lowest rounded-lg p-8 border border-outline-variant/30 shadow-sm hover:shadow-md hover:border-primary/30 transition-all reveal">
-          <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Managed Print Services</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Optimize and manage your entire print environment with our MPS program. Reduce cost-per-page, improve uptime and keep your fleet always ready.</p>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-3" data-i18n="service_mps_title">Managed Print Services</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" data-i18n="service_mps_desc">Optimize and manage your entire print environment with our MPS program. Reduce cost-per-page, improve uptime and keep your fleet always ready.</p>
         </div>
         <div class="bg-surface-container-lowest rounded-lg p-8 border border-outline-variant/30 shadow-sm hover:shadow-md hover:border-primary/30 transition-all reveal">
-          <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Network Installation</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Design and deployment of secure, high-performance wired and wireless networks for offices, hotels, warehouses and retail stores.</p>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-3" data-i18n="service_network_title">Network Installation</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" data-i18n="service_network_desc">Design and deployment of secure, high-performance wired and wireless networks for offices, hotels, warehouses and retail stores.</p>
         </div>
         <div class="bg-surface-container-lowest rounded-lg p-8 border border-outline-variant/30 shadow-sm hover:shadow-md hover:border-primary/30 transition-all reveal">
-          <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Video Surveillance</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">End-to-end CCTV solutions — from camera selection and placement to NVR configuration and remote monitoring.</p>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-3" data-i18n="service_surveillance_title">Video Surveillance</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" data-i18n="service_surveillance_desc">End-to-end CCTV solutions — from camera selection and placement to NVR configuration and remote monitoring.</p>
         </div>
         <div class="bg-surface-container-lowest rounded-lg p-8 border border-outline-variant/30 shadow-sm hover:shadow-md hover:border-primary/30 transition-all reveal">
-          <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Training & Consultation</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Our experts train your team on the products you buy and help you plan future IT investments aligned with your business goals.</p>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-3" data-i18n="service_training_title">Training & Consultation</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" data-i18n="service_training_desc">Our experts train your team on the products you buy and help you plan future IT investments aligned with your business goals.</p>
         </div>
       </div>
     </div>
@@ -96,38 +97,38 @@
     <div class="max-w-2xl mx-auto px-6">
       <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/30 p-8 md:p-10">
         <div class="text-center mb-8">
-          <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Contact Our Experts</h2>
-          <p class="font-body-md text-body-md text-on-surface-variant">Ready to upgrade your infrastructure? Let's discuss your specific requirements.</p>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2" data-i18n="contact_experts">Contact Our Experts</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="contact_experts_desc">Ready to upgrade your infrastructure? Let's discuss your specific requirements.</p>
         </div>
         <form action="mailto:info@thc-egypt.org" method="post" enctype="text/plain" class="space-y-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label class="block font-label-md text-label-md text-on-surface mb-2" for="name">Full Name</label>
-              <input class="w-full bg-white border border-outline-variant rounded-lg px-4 py-3 text-sm text-on-surface focus:border-primary focus:ring-0 outline-none transition-colors" id="name" name="name" placeholder="Jane Doe" type="text"/>
+              <label class="block font-label-md text-label-md text-on-surface mb-2" for="name" data-i18n="full_name">Full Name</label>
+              <input class="w-full bg-white border border-outline-variant rounded-lg px-4 py-3 text-sm text-on-surface focus:border-primary focus:ring-0 outline-none transition-colors" id="name" name="name" placeholder="Jane Doe" type="text" data-i18n-placeholder="full_name_placeholder"/>
             </div>
             <div>
-              <label class="block font-label-md text-label-md text-on-surface mb-2" for="email">Email</label>
-              <input class="w-full bg-white border border-outline-variant rounded-lg px-4 py-3 text-sm text-on-surface focus:border-primary focus:ring-0 outline-none transition-colors" id="email" name="email" placeholder="jane@company.com" type="email"/>
+              <label class="block font-label-md text-label-md text-on-surface mb-2" for="email" data-i18n="email">Email</label>
+              <input class="w-full bg-white border border-outline-variant rounded-lg px-4 py-3 text-sm text-on-surface focus:border-primary focus:ring-0 outline-none transition-colors" id="email" name="email" placeholder="jane@company.com" type="email" data-i18n-placeholder="email_placeholder"/>
             </div>
           </div>
           <div>
-            <label class="block font-label-md text-label-md text-on-surface mb-2" for="service">Interested Service</label>
+            <label class="block font-label-md text-label-md text-on-surface mb-2" for="service" data-i18n="interested_service">Interested Service</label>
             <select class="w-full bg-white border border-outline-variant rounded-lg px-4 py-3 text-sm text-on-surface focus:border-primary focus:ring-0 outline-none transition-colors" id="service" name="service">
-              <option>Supply & Distribution</option>
-              <option>Technical Support</option>
-              <option>Enterprise Solutions</option>
-              <option>Managed Print Services</option>
-              <option>Network Installation</option>
-              <option>Video Surveillance</option>
-              <option>Training & Consultation</option>
+              <option data-i18n="service_supply_title">Supply & Distribution</option>
+              <option data-i18n="service_support_title">Technical Support</option>
+              <option data-i18n="service_enterprise_title">Enterprise Solutions</option>
+              <option data-i18n="service_mps_title">Managed Print Services</option>
+              <option data-i18n="service_network_title">Network Installation</option>
+              <option data-i18n="service_surveillance_title">Video Surveillance</option>
+              <option data-i18n="service_training_title">Training & Consultation</option>
             </select>
           </div>
           <div>
-            <label class="block font-label-md text-label-md text-on-surface mb-2" for="message">Project Details</label>
-            <textarea class="w-full bg-white border border-outline-variant rounded-lg px-4 py-3 text-sm text-on-surface focus:border-primary focus:ring-0 outline-none transition-colors resize-none" id="message" name="message" placeholder="Describe your project scope..." rows="4"></textarea>
+            <label class="block font-label-md text-label-md text-on-surface mb-2" for="message" data-i18n="project_details">Project Details</label>
+            <textarea class="w-full bg-white border border-outline-variant rounded-lg px-4 py-3 text-sm text-on-surface focus:border-primary focus:ring-0 outline-none transition-colors resize-none" id="message" name="message" placeholder="Describe your project scope..." rows="4" data-i18n-placeholder="project_details_placeholder"></textarea>
           </div>
           <button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded hover:bg-surface-tint transition-all flex items-center justify-center gap-2" type="submit">
-            Submit Request <span class="material-symbols-outlined text-[18px]">send</span>
+            <span data-i18n="submit_request">Submit Request</span> <span class="material-symbols-outlined text-[18px] rtl:rotate-180">send</span>
           </button>
         </form>
       </div>

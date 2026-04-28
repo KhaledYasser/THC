@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/translations.js"></script>
   <script src="js/tailwind-config.js"></script>
   <script>tailwind.config = window.THC_TAILWIND_CONFIG;</script>
   <link rel="stylesheet" href="css/style.css"/>
@@ -28,9 +29,9 @@
 <section class="py-16 bg-surface-container-low border-t border-outline-variant">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex justify-between items-end mb-8">
-      <h2 class="font-headline-lg text-headline-lg text-on-surface">Related Products</h2>
+      <h2 class="font-headline-lg text-headline-lg text-on-surface" data-i18n="related_products">Related Products</h2>
       <a class="font-label-md text-label-md text-primary hover:text-primary-container transition-colors flex items-center gap-2" href="products.html">
-        View All <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        <span data-i18n="view_all">View All</span> <span class="material-symbols-outlined text-[16px] rtl:rotate-180">arrow_forward</span>
       </a>
     </div>
     <div id="related-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>

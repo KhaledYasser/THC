@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/translations.js"></script>
   <script src="js/tailwind-config.js"></script>
   <script>tailwind.config = window.THC_TAILWIND_CONFIG;</script>
   <link rel="stylesheet" href="css/style.css"/>
@@ -23,8 +24,8 @@
 <main class="max-w-7xl mx-auto px-6 py-12">
   <!-- Header -->
   <div class="mb-10">
-    <h1 id="products-title" class="font-headline-lg text-headline-lg text-on-background mb-2">All Products</h1>
-    <p class="font-body-md text-body-md text-on-surface-variant">Browse our full range of IT products and enterprise technology solutions.</p>
+    <h1 id="products-title" class="font-headline-lg text-headline-lg text-on-background mb-2" data-i18n="all_products">All Products</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="products_desc">Browse our full range of IT products and enterprise technology solutions.</p>
   </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -33,8 +34,8 @@
       <!-- Search -->
       <div class="bg-surface-container-lowest rounded-lg p-6 border border-outline-variant/30 shadow-sm">
         <form id="search-form" class="flex gap-2" role="search">
-          <label for="search-input" class="sr-only">Search products</label>
-          <input id="search-input" name="q" type="search" placeholder="Search products…"
+          <label for="search-input" class="sr-only" data-i18n="search_placeholder">Search products</label>
+          <input id="search-input" name="q" type="search" placeholder="Search products…" data-i18n-placeholder="search_placeholder"
             class="flex-1 bg-white border border-outline-variant rounded px-4 py-2.5 text-sm text-on-surface focus:border-primary focus:ring-0 outline-none transition-colors"/>
           <button type="submit" class="bg-primary text-on-primary px-4 py-2.5 rounded hover:bg-surface-tint transition-colors">
             <span class="material-symbols-outlined text-[18px]">search</span>
@@ -44,13 +45,13 @@
 
       <!-- Categories -->
       <div class="bg-surface-container-lowest rounded-lg p-6 border border-outline-variant/30 shadow-sm">
-        <h3 class="font-label-md text-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Category</h3>
+        <h3 class="font-label-md text-label-md text-on-surface-variant mb-4 uppercase tracking-wider" data-i18n="category">Category</h3>
         <div id="filter-bar" class="flex flex-wrap gap-2" aria-label="Filter by category"></div>
       </div>
 
       <!-- Brands -->
       <div class="bg-surface-container-lowest rounded-lg p-6 border border-outline-variant/30 shadow-sm">
-        <h3 class="font-label-md text-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Brand</h3>
+        <h3 class="font-label-md text-label-md text-on-surface-variant mb-4 uppercase tracking-wider" data-i18n="brand">Brand</h3>
         <div id="brand-bar" class="flex flex-wrap gap-2" aria-label="Filter by brand"></div>
       </div>
     </aside>

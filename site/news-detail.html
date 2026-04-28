@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/translations.js"></script>
   <script src="js/tailwind-config.js"></script>
   <script>tailwind.config = window.THC_TAILWIND_CONFIG;</script>
   <link rel="stylesheet" href="css/style.css"/>
@@ -22,10 +23,10 @@
 
 <main class="max-w-3xl mx-auto px-6 py-16">
   <div id="article-view">
-    <p class="text-center py-20 text-on-surface-variant">Loading article…</p>
+    <p class="text-center py-20 text-on-surface-variant" data-i18n="loading_article">Loading article…</p>
   </div>
   <a href="news.html" class="inline-flex items-center gap-2 text-primary font-label-md text-label-md mt-10 hover:text-primary-container transition-colors">
-    <span class="material-symbols-outlined text-[18px]">arrow_back</span> Back to News
+    <span class="material-symbols-outlined text-[18px] rtl:rotate-180">arrow_back</span> <span data-i18n="back_to_news">Back to News</span>
   </a>
 </main>
 
