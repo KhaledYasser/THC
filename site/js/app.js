@@ -10,7 +10,7 @@
       const products = window.THC_PRODUCTS || [];
       return this.load().reduce((sum, it) => {
         const p = products.find(x => x.id === it.id);
-        return sum + (p ? p.price * it.qty : 0);
+        return sum + (p ? (p.price || 0) * it.qty : 0);
       }, 0);
     },
     add(id, qty = 1) {
@@ -63,7 +63,7 @@
           <div class="brand">${p.brand}</div>
           <div class="title">${p.name}</div>
           <div class="rating">${renderStars(p.rating)} <span class="count">(${p.reviews})</span></div>
-          <div class="price">$${p.price.toFixed(2)} ${p.oldPrice ? `<span class="old">$${p.oldPrice.toFixed(2)}</span>` : ''}</div>
+          ${p.price !== undefined ? `<div class="price">$${p.price.toFixed(2)} ${p.oldPrice ? `<span class="old">$${p.oldPrice.toFixed(2)}</span>` : ''}</div>` : ''}
         </div>
       </a>
     `;
@@ -73,6 +73,27 @@
     const el = document.getElementById('featured-grid');
     if (!el) return;
     el.innerHTML = window.THC_PRODUCTS.slice(0, 8).map(productCard).join('');
+  }
+
+  function renderNewsHome() {
+    const el = document.getElementById('news-grid-home');
+    if (!el) return;
+    // Mock news data or fetch if available. For now, using static content.
+    const news = [
+        { date: 'OCT 24, 2023', title: 'New Canon MegaTank Lineup Arrives', desc: 'Discover the latest high-efficiency printers from Canon, now in stock at Technology Hall.' },
+        { date: 'OCT 20, 2023', title: 'The Future of POS Systems', desc: 'How cloud-integrated POS solutions are transforming retail across Egypt.' },
+        { date: 'OCT 15, 2023', title: 'IT Infrastructure Trends 2024', desc: 'Stay ahead with our latest guide on modernizing your business IT environment.' }
+    ];
+    el.innerHTML = news.map((n, idx) => `
+        <a href="news-detail.html?id=${idx + 1}" class="news-card">
+            <div class="body">
+                <div class="date">${n.date}</div>
+                <h3>${n.title}</h3>
+                <p>${n.desc}</p>
+                <span style="color:var(--accent);font-size:12px;font-weight:700;margin-top:10px;display:block;">READ MORE →</span>
+            </div>
+        </a>
+    `).join('');
   }
 
   function renderLatest() {
@@ -155,7 +176,7 @@
         <div class="brand">${p.brand}</div>
         <h1>${p.name}</h1>
         <div class="rating">${renderStars(p.rating)} <span class="count" style="color:#888">(${p.reviews} reviews)</span></div>
-        <div class="price">$${p.price.toFixed(2)} ${p.oldPrice ? `<span class="old">$${p.oldPrice.toFixed(2)}</span>` : ''}</div>
+        ${p.price !== undefined ? `<div class="price">$${p.price.toFixed(2)} ${p.oldPrice ? `<span class="old">$${p.oldPrice.toFixed(2)}</span>` : ''}</div>` : ''}
         <p class="desc">${p.description}</p>
         <div class="qty">
           <button id="qty-dec" type="button">−</button>
@@ -222,7 +243,7 @@
               <div><strong>${p.name}</strong><br/><span style="color:#888;font-size:12px">${p.brand}</span></div>
             </div>
           </td>
-          <td>$${p.price.toFixed(2)}</td>
+          <td>${p.price !== undefined ? `$${p.price.toFixed(2)}` : '—'}</td>
           <td>
             <div class="qty">
               <button class="dec" type="button">−</button>
@@ -230,7 +251,7 @@
               <button class="inc" type="button">+</button>
             </div>
           </td>
-          <td>$${(p.price * it.qty).toFixed(2)}</td>
+          <td>${p.price !== undefined ? `$${(p.price * it.qty).toFixed(2)}` : '—'}</td>
           <td><button class="remove">✕</button></td>
         </tr>
       `;
@@ -276,6 +297,7 @@
     renderFeatured();
     renderLatest();
     renderBrands();
+    renderNewsHome();
     renderProducts();
     renderProductDetail();
     renderCart();
