@@ -1,45 +1,1 @@
-[1;32m==>[0m Checking/requesting ACM cert for thc.pom100.com
-[1;32m==>[0m Requesting new certificate
-[1;32m==>[0m Cert ARN: arn:aws:acm:us-east-1:421433934085:certificate/05df8d25-b04f-41db-a1e7-83e02310df5e
-[1;32m==>[0m Creating validation CNAME in Route53: _2d97cde83113449c76c47ca0f274c20e.thc.pom100.com. -> _53c5db0a548cad7d0f295bfd3dd0dd9f.jkddzztszm.acm-validations.aws.
-[1;32m==>[0m Waiting for cert to be ISSUED (this can take several minutes)...
-  status: PENDING_VALIDATION
-  status: ISSUED
-[1;32m==>[0m Cert ARN: arn:aws:acm:us-east-1:421433934085:certificate/05df8d25-b04f-41db-a1e7-83e02310df5e
-[1;32m==>[0m Creating S3 bucket thc.pom100.com
-{
-    "Location": "/thc.pom100.com",
-    "BucketArn": "arn:aws:s3:::thc.pom100.com"
-}
-[1;32m==>[0m Setting up Lambda thc-stripe-checkout
-[1;32m==>[0m Lambda role: arn:aws:iam::421433934085:role/thc-stripe-checkout-role
-[1;32m==>[0m Creating Lambda function
-[1;32m==>[0m Lambda Function URL: https://h7fi736zgq2bzoqyxkqmbg6lz40cbmay.lambda-url.us-east-1.on.aws/
-[1;32m==>[0m Generating config.js and uploading site
-Completed 2.0 KiB/70.5 KiB (16.4 KiB/s) with 17 file(s) remainingupload: site/cart.html to s3://thc.pom100.com/cart.html          
-Completed 2.0 KiB/70.5 KiB (16.4 KiB/s) with 16 file(s) remainingCompleted 3.9 KiB/70.5 KiB (18.6 KiB/s) with 16 file(s) remainingupload: site/js/stripe.js to s3://thc.pom100.com/js/stripe.js    
-Completed 3.9 KiB/70.5 KiB (18.6 KiB/s) with 15 file(s) remainingCompleted 4.0 KiB/70.5 KiB (13.0 KiB/s) with 15 file(s) remainingupload: site/config.js to s3://thc.pom100.com/config.js          
-Completed 4.0 KiB/70.5 KiB (13.0 KiB/s) with 14 file(s) remainingCompleted 6.1 KiB/70.5 KiB (19.5 KiB/s) with 14 file(s) remainingupload: site/cancel.html to s3://thc.pom100.com/cancel.html      
-Completed 6.1 KiB/70.5 KiB (19.5 KiB/s) with 13 file(s) remainingCompleted 10.1 KiB/70.5 KiB (32.0 KiB/s) with 13 file(s) remainingupload: site/news.html to s3://thc.pom100.com/news.html           
-Completed 10.1 KiB/70.5 KiB (32.0 KiB/s) with 12 file(s) remainingCompleted 20.5 KiB/70.5 KiB (54.0 KiB/s) with 12 file(s) remainingupload: site/js/app.js to s3://thc.pom100.com/js/app.js           
-Completed 20.5 KiB/70.5 KiB (54.0 KiB/s) with 11 file(s) remainingCompleted 22.1 KiB/70.5 KiB (56.5 KiB/s) with 11 file(s) remainingupload: site/categories.html to s3://thc.pom100.com/categories.html
-Completed 22.1 KiB/70.5 KiB (56.5 KiB/s) with 10 file(s) remainingCompleted 26.4 KiB/70.5 KiB (67.0 KiB/s) with 10 file(s) remainingCompleted 39.3 KiB/70.5 KiB (99.3 KiB/s) with 10 file(s) remainingupload: site/checkout.html to s3://thc.pom100.com/checkout.html   
-Completed 39.3 KiB/70.5 KiB (99.3 KiB/s) with 9 file(s) remainingCompleted 43.7 KiB/70.5 KiB (110.2 KiB/s) with 9 file(s) remainingupload: site/demo_checkout.html to s3://thc.pom100.com/demo_checkout.html
-Completed 43.7 KiB/70.5 KiB (110.2 KiB/s) with 8 file(s) remainingupload: site/css/style.css to s3://thc.pom100.com/css/style.css   
-Completed 43.7 KiB/70.5 KiB (110.2 KiB/s) with 7 file(s) remainingCompleted 48.7 KiB/70.5 KiB (122.3 KiB/s) with 7 file(s) remainingupload: site/index.html to s3://thc.pom100.com/index.html         
-Completed 48.7 KiB/70.5 KiB (122.3 KiB/s) with 6 file(s) remainingCompleted 52.2 KiB/70.5 KiB (130.4 KiB/s) with 6 file(s) remainingCompleted 54.0 KiB/70.5 KiB (134.9 KiB/s) with 6 file(s) remainingupload: site/partners.html to s3://thc.pom100.com/partners.html   
-Completed 54.0 KiB/70.5 KiB (134.9 KiB/s) with 5 file(s) remainingupload: site/product.html to s3://thc.pom100.com/product.html     
-Completed 54.0 KiB/70.5 KiB (134.9 KiB/s) with 4 file(s) remainingCompleted 61.5 KiB/70.5 KiB (153.3 KiB/s) with 4 file(s) remainingupload: site/js/data.js to s3://thc.pom100.com/js/data.js         
-Completed 61.5 KiB/70.5 KiB (153.3 KiB/s) with 3 file(s) remainingCompleted 63.8 KiB/70.5 KiB (141.8 KiB/s) with 3 file(s) remainingupload: site/products.html to s3://thc.pom100.com/products.html   
-Completed 63.8 KiB/70.5 KiB (141.8 KiB/s) with 2 file(s) remainingCompleted 68.1 KiB/70.5 KiB (146.4 KiB/s) with 2 file(s) remainingupload: site/services.html to s3://thc.pom100.com/services.html   
-Completed 68.1 KiB/70.5 KiB (146.4 KiB/s) with 1 file(s) remainingCompleted 70.5 KiB/70.5 KiB (144.7 KiB/s) with 1 file(s) remainingupload: site/success.html to s3://thc.pom100.com/success.html     
-[1;32m==>[0m Setting up CloudFront distribution
-[1;32m==>[0m OAC: E1XALJX7IIE9GK
-[1;32m==>[0m Creating new CloudFront distribution
-[1;32m==>[0m Distribution: E1AIRSESSXH29T  d1lrlovk5uqjyc.cloudfront.net
-[1;32m==>[0m Applying S3 bucket policy for CloudFront OAC
-[1;32m==>[0m Creating Route53 A-alias record thc.pom100.com -> d1lrlovk5uqjyc.cloudfront.net
-[1;32m==>[0m ===== DEPLOYMENT COMPLETE =====
-[1;32m==>[0m Site: https://thc.pom100.com
-[1;32m==>[0m Lambda URL: https://h7fi736zgq2bzoqyxkqmbg6lz40cbmay.lambda-url.us-east-1.on.aws/
-[1;32m==>[0m CloudFront: d1lrlovk5uqjyc.cloudfront.net (E1AIRSESSXH29T)
+[1;32m==>[0m Checking/requesting ACM cert for thc-egypt.org

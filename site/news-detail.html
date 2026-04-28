@@ -1,120 +1,38 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>News Detail — Technology Hall</title>
-<link rel="stylesheet" href="css/style.css"/>
-<style>
-    .article-container { max-width: 800px; margin: 60px auto; padding: 0 20px; line-height: 1.8; }
-    .article-meta { color: var(--accent); font-weight: 700; font-size: 14px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1.5px; }
-    .article-container h1 { font-size: 42px; font-weight: 900; margin-bottom: 30px; line-height: 1.2; }
-    .article-content p { margin-bottom: 20px; font-size: 17px; color: #444; }
-    .back-link { display: inline-block; margin-top: 40px; color: var(--accent); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
-</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>News — Technology Hall</title>
+  <meta name="description" content="News article from Technology Hall."/>
+  <meta name="theme-color" content="#0001bb"/>
+  <link rel="icon" type="image/png" href="images/brand-hp.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+  <script>tailwind.config = window.THC_TAILWIND_CONFIG;</script>
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
-<body>
-<header class="header">
-  <a class="logo" href="index.html">TECHNOLOGY HALL</a>
-  <nav class="nav">
-    <a href="index.html">HOME</a><a href="products.html">PRODUCTS</a>
-    <a href="categories.html">CATEGORIES</a><a href="services.html">SERVICES</a>
-    <a href="partners.html">PARTNERS</a><a href="news.html" class="active">NEWS</a>
-  </nav>
-  <div style="display:flex;align-items:center;gap:10px;">
-    <button class="burger" aria-label="Menu">☰</button>
+<body data-page="news" class="bg-background text-on-background antialiased">
+
+<header id="site-header"></header>
+
+<main class="max-w-3xl mx-auto px-6 py-16">
+  <div id="article-view">
+    <p class="text-center py-20 text-on-surface-variant">Loading article…</p>
   </div>
-</header>
+  <a href="news.html" class="inline-flex items-center gap-2 text-primary font-label-md text-label-md mt-10 hover:text-primary-container transition-colors">
+    <span class="material-symbols-outlined text-[18px]">arrow_back</span> Back to News
+  </a>
+</main>
 
-<div class="article-container">
-    <div id="article-view">
-        <p style="text-align:center;padding:100px 0;">Loading article...</p>
-    </div>
-    <a href="news.html" class="back-link">← Back to News</a>
-</div>
+<footer id="site-footer"></footer>
 
-<footer class="footer">
-  <div class="footer-grid">
-    <div><div class="logo" style="color:#fff;">TECHNOLOGY HALL</div><p class="desc">Leading IT supplier in Egypt.</p></div>
-    <div><h4>SHOP</h4><ul><li><a href="products.html">All Products</a></li></ul></div>
-    <div><h4>COMPANY</h4><ul><li><a href="services.html">Services</a></li></ul></div>
-    <div>
-      <h4>CONTACT</h4>
-      <ul>
-        <li>📍 27 El Maraghy St,. Agouza Giza</li>
-        <li>📞 +20 2 1234 5678</li>
-        <li>✉ Ino@thc-egypt.org</li>
-        <li>🌐 <a href="https://thc-egypt.org" target="_blank" style="color:inherit;">thc-egypt.org</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="bottom">© <span id="yr"></span> Technology Hall.</div>
-</footer>
-
-<script src="js/data.js"></script>
-<script src="js/app.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const articleId = urlParams.get('id');
-        const view = document.getElementById('article-view');
-        
-        const newsData = {
-            '1': {
-                date: 'OCT 24, 2023',
-                title: 'New Canon MegaTank Lineup Arrives',
-                content: `
-                    The latest innovation in printing technology has finally arrived at Technology Hall. Canon's new MegaTank series represents a significant leap forward for high-volume printing efficiency. These machines are designed from the ground up to minimize waste while maximizing productivity, making them the perfect choice for busy offices across Egypt. 
-                    
-                    With integrated ink tanks that are easy to refill and highly transparent, users can monitor ink levels at a glance. The new pigment black ink ensures sharp, crisp text that is resistant to smudging and water, while the high-yield bottles can produce thousands of pages before needing a replacement. 
-                    
-                    We are proud to be the first to bring this complete range to our customers, offering full technical support and genuine supplies for every model in the series. Our team has been fully trained on these new systems to ensure you get the best possible experience from day one.
-                    
-                    Visit our showroom today to see the MegaTank in action and learn how it can transform your business document workflow while significantly reducing your long-term printing costs.
-                `
-            },
-            '2': {
-                date: 'OCT 20, 2023',
-                title: 'The Future of POS Systems',
-                content: `
-                    The retail landscape in Egypt is changing rapidly, and the technology powering point-of-sale systems must keep pace. Cloud-integrated POS solutions are no longer a luxury but a necessity for modern businesses looking to stay competitive in a data-driven world. 
-                    
-                    These new systems offer real-time inventory tracking, detailed sales analytics, and seamless integration with e-commerce platforms. By moving the heavy lifting to the cloud, retailers can manage multiple locations from a single dashboard, ensuring consistency and accuracy across their entire operation. 
-                    
-                    At Technology Hall, we specialize in implementing end-to-end POS solutions that combine robust hardware with intelligent software. Our partnerships with leaders like Epson and Zebra allow us to provide the most reliable peripherals on the market.
-                    
-                    Whether you are a small boutique or a large supermarket chain, upgrading your POS infrastructure is one of the most impactful investments you can make. Let us help you navigate the transition to a smarter, more efficient retail environment.
-                `
-            },
-            '3': {
-                date: 'OCT 15, 2023',
-                title: 'IT Infrastructure Trends 2024',
-                content: `
-                    As we look toward 2024, the trends in IT infrastructure are leaning heavily toward hybrid work models and enhanced cybersecurity. Businesses must build foundations that are both flexible enough to support remote workers and secure enough to protect sensitive data.
-                    
-                    Networking technology is at the heart of this shift. High-performance Wi-Fi 6 solutions are becoming the standard, providing the bandwidth and reliability needed for intensive cloud applications and video conferencing. Security is also being integrated directly into the hardware layer.
-                    
-                    We are seeing a massive increase in demand for integrated solutions that combine networking, storage, and specialized peripherals. Our enterprise solutions team is dedicated to designing these complex environments for clients in various sectors, from finance to manufacturing.
-                    
-                    Staying ahead of technology trends is a full-time job. Technology Hall is committed to being your guide, providing the expertise and products needed to build a future-proof IT infrastructure that grows with your business.
-                `
-            }
-        };
-
-        const article = newsData[articleId];
-        if (article) {
-            view.innerHTML = `
-                <div class="article-meta">${article.date}</div>
-                <h1>${article.title}</h1>
-                <div class="article-content">
-                    ${article.content.split('\\n').map(p => `<p>${p.trim()}</p>`).join('')}
-                </div>
-            `;
-            document.title = `${article.title} — Technology Hall`;
-        } else {
-            view.innerHTML = '<h1>Article not found</h1><p>The requested news article could not be located.</p>';
-        }
-    });
-</script>
+<script src="js/data.js" defer></script>
+<script src="js/layout.js" defer></script>
+<script src="js/app.js" defer></script>
 </body>
 </html>

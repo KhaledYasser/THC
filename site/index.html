@@ -1,142 +1,148 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Technology Hall — Leading IT Supplier in Egypt</title>
-<meta name="description" content="Technology Hall supplies IT products, printers, scanners, POS systems and accessories across Egypt."/>
-<link rel="stylesheet" href="css/style.css"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Technology Hall — Leading IT Supplier in Egypt</title>
+  <meta name="description" content="Technology Hall supplies IT products, printers, scanners, POS systems, networking and office-automation solutions across Egypt."/>
+  <meta name="theme-color" content="#0001bb"/>
+  <meta property="og:title" content="Technology Hall — Leading IT Supplier in Egypt"/>
+  <meta property="og:description" content="B2B catalog of IT products, printers, scanners, POS systems and more. Request a quote online."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="images/server_room_hero.png"/>
+  <link rel="icon" type="image/png" href="images/brand-hp.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+  <script>tailwind.config = window.THC_TAILWIND_CONFIG;</script>
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
-<body>
+<body data-page="home" class="bg-background text-on-background font-body-md antialiased">
 
-<header class="header">
-  <a class="logo" href="index.html">TECHNOLOGY HALL</a>
-  <nav class="nav">
-    <a href="index.html" class="active">HOME</a>
-    <a href="products.html">PRODUCTS</a>
-    <a href="categories.html">CATEGORIES</a>
-    <a href="services.html">SERVICES</a>
-    <a href="partners.html">PARTNERS</a>
-    <a href="news.html">NEWS</a>
-  </nav>
-  <div style="display:flex;align-items:center;gap:10px;">
-    <button class="burger" aria-label="Menu">☰</button>
-  </div>
-</header>
+<header id="site-header"></header>
 
-<section class="hero main-hero">
-  <div class="inner">
-    <div class="kicker">TECHNOLOGY HALL</div>
-    <h1>Easy to Use Smart Home Devices</h1>
-    <p>Technology Hall is one of the leading companies in Egypt in the field of supplying and distributing IT, computers, printers, scanners and their supplies.</p>
-  </div>
-</section>
-
-<section class="section vision-mission" id="vision-mission">
-  <div class="section-head"><h2>Our Mission & Vision</h2><div class="underline"></div></div>
-  <div class="vision-grid">
-    <div class="vision-item">
-      <h3>Our Mission</h3>
-      <p>To provide the Egyptian market with the most reliable IT and printing solutions, empowering businesses with cutting-edge technology and exceptional support.</p>
+<main class="flex-grow">
+  <!-- Hero Section -->
+  <section class="relative min-h-[600px] flex items-center overflow-hidden bg-inverse-surface">
+    <div class="absolute inset-0 z-0">
+      <img alt="Data center server racks" class="w-full h-full object-cover opacity-30" src="images/server_room_hero.png"/>
+      <div class="absolute inset-0 bg-gradient-to-r from-inverse-surface via-inverse-surface/80 to-transparent"></div>
     </div>
-    <div class="vision-item">
-      <h3>Our Vision</h3>
-      <p>To be the premier technology partner in Egypt, recognized for our commitment to quality, innovation, and long-term customer success.</p>
+    <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-16">
+      <div class="max-w-2xl">
+        <span class="inline-block bg-tertiary-container/20 text-tertiary-fixed border border-tertiary-container rounded px-4 py-2 font-label-md text-label-md mb-6">Egypt's Premier Technology Provider</span>
+        <h1 class="font-headline-xl text-headline-xl text-on-error mb-6">Your Trusted Partner in IT and Smart Home Innovation</h1>
+        <p class="font-body-lg text-body-lg text-secondary-fixed-dim mb-8">Empowering businesses and homes with cutting-edge infrastructure, intelligent automation, and unparalleled support services.</p>
+        <div class="flex gap-4 flex-wrap">
+          <a href="products.html" class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-surface-tint transition-colors shadow-lg shadow-primary/20 inline-flex items-center gap-2">
+            Explore Products <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </a>
+          <a href="services.html" class="bg-transparent text-on-error border border-outline font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-surface-variant/10 transition-colors inline-flex items-center gap-2">
+            Our Services
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section alt shop-by-category" id="shop-by-category">
-  <div class="section-head"><h2>View by Category</h2><div class="underline"></div></div>
-  <div id="cat-grid" class="cat-grid"></div>
-</section>
-
-<section class="section brands-section" id="brands">
-  <div class="section-head">
-    <h2>Global Brand Rankings</h2>
-    <div class="underline"></div>
-    <p>Leading technology manufacturers we work with</p>
-  </div>
-  <div class="marquee-container">
-    <div class="marquee-content">
-        <div class="ranking-item"><strong>CANON</strong> <span>#1 in Imaging</span></div>
-        <div class="ranking-item"><strong>EPSON</strong> <span>Top 3 in Printing</span></div>
-        <div class="ranking-item"><strong>HP</strong> <span>#1 Global PC & Print</span></div>
-        <div class="ranking-item"><strong>ZEBRA</strong> <span>Global Leader in Barcode</span></div>
-        <div class="ranking-item"><strong>HONEYWELL</strong> <span>Fortune 100 Technology</span></div>
-        <div class="ranking-item"><strong>FUJITSU</strong> <span>#1 Document Scanners</span></div>
-        <div class="ranking-item"><strong>DELL</strong> <span>Top Global Enterprise</span></div>
-        <!-- Duplicated for seamless loop -->
-        <div class="ranking-item"><strong>CANON</strong> <span>#1 in Imaging</span></div>
-        <div class="ranking-item"><strong>EPSON</strong> <span>Top 3 in Printing</span></div>
-        <div class="ranking-item"><strong>HP</strong> <span>#1 Global PC & Print</span></div>
-        <div class="ranking-item"><strong>ZEBRA</strong> <span>Global Leader in Barcode</span></div>
+  <!-- Browse by Category -->
+  <section class="py-16 max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Browse by Category</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Find the right hardware for your business.</p>
     </div>
-  </div>
-</section>
+    <div id="cat-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+  </section>
 
-<section class="section alt news-section" id="news">
-  <div class="section-head"><h2>Latest News</h2><div class="underline"></div></div>
-  <div id="news-grid-home" class="news-grid"></div>
-  <div style="text-align:center;margin-top:30px;">
-    <a href="news.html" class="btn outline dark">View All News</a>
-  </div>
-</section>
+  <!-- Featured Products -->
+  <section class="py-16 bg-surface-container-low border-y border-outline-variant">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex justify-between items-end mb-12">
+        <div>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Featured Products</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant">Professional-grade hardware for demanding environments.</p>
+        </div>
+        <a class="hidden md:inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:text-primary-container transition-colors" href="products.html">
+          View All Products <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+      </div>
+      <div id="featured-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+      <a class="md:hidden mt-8 flex items-center justify-center gap-2 text-primary font-label-md text-label-md" href="products.html">
+        View All Products <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+      </a>
+    </div>
+  </section>
 
-<section class="section featured-products" id="featured">
-  <div class="row-head" style="max-width:1300px;margin:0 auto 30px;">
-    <h2>Featured Products</h2>
-    <a href="products.html">VIEW ALL →</a>
-  </div>
-  <div id="featured-grid" class="product-grid"></div>
-</section>
+  <!-- Vision & Mission (Bento Grid) -->
+  <section class="py-16 max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Our Mission & Vision</h2>
+      <div class="w-16 h-1 bg-primary rounded mx-auto mb-4"></div>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">The principles that guide every product we distribute and every solution we deploy.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Mission (2/3 width) -->
+      <div class="md:col-span-2 bg-surface-container rounded-xl p-10 border border-outline-variant/30 relative overflow-hidden group hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal">
+        <div class="absolute -top-4 -right-4 p-6 opacity-[0.07] group-hover:opacity-[0.12] transition-opacity pointer-events-none">
+          <span class="material-symbols-outlined text-primary" style="font-size:180px">rocket_launch</span>
+        </div>
+        <div class="relative z-10">
+          <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-primary">flag</span>
+          </div>
+          <h3 class="font-headline-lg text-headline-lg text-on-surface mb-3">Our Mission</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">To equip the Egyptian market with the most reliable IT and printing solutions — empowering businesses through cutting-edge technology, authentic hardware and exceptional long-term support.</p>
+          <a href="about.html" class="inline-flex items-center gap-2 mt-5 text-primary font-label-md text-label-md hover:text-primary-container transition-colors">
+            Learn more about us <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+      <!-- Vision (1/3 width) -->
+      <div class="bg-surface-container-high rounded-xl p-10 border border-outline-variant/30 flex flex-col justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal">
+        <div>
+          <div class="w-12 h-12 bg-tertiary-container/20 rounded-lg flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-tertiary">visibility</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Our Vision</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">To be the premier technology partner in Egypt — recognized for quality, innovation and measurable customer success.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="section alt category-view-action">
-    <div style="text-align:center;">
-        <a href="categories.html" class="btn">View By Category</a>
+  <!-- Latest News -->
+  <section class="py-16 max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Latest News</h2>
+      <div class="w-16 h-1 bg-primary rounded mx-auto mb-4"></div>
     </div>
-</section>
+    <div id="news-grid-home" class="grid grid-cols-1 md:grid-cols-3 gap-7"></div>
+    <div class="text-center mt-10">
+      <a href="news.html" class="inline-flex items-center gap-2 border border-outline text-on-surface font-label-md text-label-md px-6 py-3 rounded hover:bg-surface-container transition-colors">
+        View all news <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </a>
+    </div>
+  </section>
 
-<footer class="footer">
-  <div class="footer-grid">
-    <div>
-      <div class="logo" style="color:#fff;">TECHNOLOGY HALL</div>
-      <p class="desc">Leading supplier of IT products, printers, scanners and office automation solutions across Egypt. Trusted by businesses since 2005.</p>
+  <!-- CTA Section -->
+  <section class="py-20 bg-surface-container-low border-t border-outline-variant text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Need help finding the right product?</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-8">Browse the full category lineup, or reach out for a tailored recommendation from our sales engineers.</p>
+      <a href="categories.html" class="inline-flex items-center gap-2 bg-primary text-on-primary font-label-md text-label-md px-8 py-3 rounded hover:bg-surface-tint transition-all shadow-lg shadow-primary/20">
+        View by category <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </a>
     </div>
-    <div>
-      <h4>SHOP</h4>
-      <ul>
-        <li><a href="products.html?cat=printers">Printers</a></li>
-        <li><a href="products.html?cat=scanners">Scanners</a></li>
-        <li><a href="products.html?cat=pos">POS Systems</a></li>
-        <li><a href="products.html?cat=ink">Ink &amp; Toner</a></li>
-        <li><a href="products.html?cat=networking">Networking</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>COMPANY</h4>
-      <ul>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="partners.html">Partners</a></li>
-        <li><a href="news.html">News</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>CONTACT</h4>
-      <ul>
-        <li>📍 27 El Maraghy St,. Agouza Giza</li>
-        <li>📞 +20 2 1234 5678</li>
-        <li>✉ Ino@thc-egypt.org</li>
-        <li>🌐 <a href="https://thc-egypt.org" target="_blank">thc-egypt.org</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="bottom">© <span id="yr"></span> Technology Hall. All rights reserved.</div>
-</footer>
+  </section>
+</main>
 
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
-<script src="js/data.js"></script>
-<script src="config.js" onerror=""></script>
-<script src="js/app.js"></script>
+<footer id="site-footer"></footer>
+
+<script src="js/data.js" defer></script>
+<script src="js/layout.js" defer></script>
+<script src="js/app.js" defer></script>
 </body>
 </html>

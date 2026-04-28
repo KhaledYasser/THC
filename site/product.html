@@ -1,44 +1,46 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Product — Technology Hall</title>
-<link rel="stylesheet" href="css/style.css"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Product — Technology Hall</title>
+  <meta name="description" content="Product details and request-a-quote from Technology Hall."/>
+  <meta name="theme-color" content="#0001bb"/>
+  <link rel="icon" type="image/png" href="images/brand-hp.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+  <script>tailwind.config = window.THC_TAILWIND_CONFIG;</script>
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
-<body>
-<header class="header">
-  <a class="logo" href="index.html">TECHNOLOGY HALL</a>
-  <nav class="nav">
-    <a href="index.html">HOME</a>
-    <a href="products.html" class="active">PRODUCTS</a>
-    <a href="categories.html">CATEGORIES</a>
-    <a href="services.html">SERVICES</a>
-    <a href="partners.html">PARTNERS</a>
-    <a href="news.html">NEWS</a>
-  </nav>
-  <div style="display:flex;align-items:center;gap:10px;">
-    <button class="cart-btn" aria-label="Cart">🛒<span class="cart-count">0</span></button>
-    <button class="burger" aria-label="Menu">☰</button>
-  </div>
-</header>
+<body data-page="products" class="bg-background text-on-background antialiased">
 
-<section class="section" style="padding-top:50px;">
-  <div id="pdp" class="pdp"></div>
+<header id="site-header"></header>
+
+<main class="max-w-7xl mx-auto px-6 py-12">
+  <div id="pdp"></div>
+</main>
+
+<!-- Related Products -->
+<section class="py-16 bg-surface-container-low border-t border-outline-variant">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex justify-between items-end mb-8">
+      <h2 class="font-headline-lg text-headline-lg text-on-surface">Related Products</h2>
+      <a class="font-label-md text-label-md text-primary hover:text-primary-container transition-colors flex items-center gap-2" href="products.html">
+        View All <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+      </a>
+    </div>
+    <div id="related-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+  </div>
 </section>
 
-<footer class="footer">
-  <div class="footer-grid">
-    <div><div class="logo" style="color:#fff;">TECHNOLOGY HALL</div><p class="desc">Leading IT supplier in Egypt.</p></div>
-    <div><h4>SHOP</h4><ul><li><a href="products.html">All Products</a></li><li><a href="products.html?cat=printers">Printers</a></li><li><a href="products.html?cat=scanners">Scanners</a></li></ul></div>
-    <div><h4>COMPANY</h4><ul><li><a href="services.html">Services</a></li><li><a href="partners.html">Partners</a></li><li><a href="news.html">News</a></li></ul></div>
-    <div><h4>CONTACT</h4><ul><li>📍 Cairo, Egypt</li><li>📞 +20 2 1234 5678</li><li>✉ info@technologyhall.com</li></ul></div>
-  </div>
-  <div class="bottom">© <span id="yr"></span> Technology Hall.</div>
-</footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
-<script src="js/data.js"></script>
-<script src="config.js" onerror=""></script>
-<script src="js/app.js"></script>
+<footer id="site-footer"></footer>
+
+<script src="js/data.js" defer></script>
+<script src="js/layout.js" defer></script>
+<script src="js/app.js" defer></script>
 </body>
 </html>

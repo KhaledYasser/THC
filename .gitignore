@@ -24,3 +24,5 @@ Modern-Web-Design/
 
 # Deploy logs
 deploy.log
+.blackboxcli/
+

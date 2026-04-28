@@ -1,305 +1,341 @@
-// Technology Hall app logic
+// Technology Hall — catalog / B2B site logic (Tailwind redesign version).
 (function () {
-  const STORAGE_KEY = 'thc_cart_v1';
+  'use strict';
 
-  const Cart = {
-    load() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch (_) { return []; } },
-    save(items) { localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); },
-    count() { return this.load().reduce((s, i) => s + i.qty, 0); },
-    total() {
-      const products = window.THC_PRODUCTS || [];
-      return this.load().reduce((sum, it) => {
-        const p = products.find(x => x.id === it.id);
-        return sum + (p ? (p.price || 0) * it.qty : 0);
-      }, 0);
-    },
-    add(id, qty = 1) {
-      const items = this.load();
-      const existing = items.find(i => i.id === id);
-      if (existing) existing.qty += qty;
-      else items.push({ id, qty });
-      this.save(items);
-      updateCartBadge();
-    },
-    setQty(id, qty) {
-      const items = this.load().map(i => i.id === id ? { ...i, qty: Math.max(1, qty) } : i);
-      this.save(items);
-      updateCartBadge();
-    },
-    remove(id) {
-      this.save(this.load().filter(i => i.id !== id));
-      updateCartBadge();
-    },
-    clear() { this.save([]); updateCartBadge(); }
-  };
-  window.THC_Cart = Cart;
+  const QUOTE_EMAIL = 'info@thc-egypt.org';
 
-  function updateCartBadge() {
-    const el = document.querySelector('.cart-count');
-    if (el) el.textContent = Cart.count();
+  /* ---------- helpers ---------- */
+  function qs(name) {
+    return new URLSearchParams(location.search).get(name);
   }
 
-  function renderStars(rating) {
-    const full = Math.floor(rating);
-    const half = rating - full >= 0.5;
-    let out = '';
-    for (let i = 0; i < 5; i++) {
-      if (i < full) out += '★';
-      else if (i === full && half) out += '⯪';
-      else out += '☆';
-    }
-    return out;
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+
+  function quoteHref(product) {
+    const subject = `Quote request: ${product.name}`;
+    const body =
+`Hello Technology Hall team,
+
+I would like to request a quote for the following product:
+
+Product : ${product.name}
+Brand   : ${product.brand}
+SKU     : ${product.id.toUpperCase()}
+
+Please include pricing, availability and any volume discounts.
+
+Thank you.`;
+    return `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
   function productCard(p) {
     return `
-      <a class="product-card" href="product.html?id=${p.id}">
-        <div class="thumb">
-          <img src="${p.image}" alt="${p.name}" loading="lazy"/>
-          <span class="badge">${p.brand}</span>
-          ${p.sale ? '<span class="sale">SALE</span>' : ''}
+      <a class="bg-surface-container-lowest rounded-lg border border-outline-variant/30 shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-300 group flex flex-col overflow-hidden relative reveal" href="product.html?id=${p.id}" aria-label="${escapeHtml(p.name)}">
+        <div class="aspect-square bg-surface-container p-6 flex items-center justify-center relative overflow-hidden">
+          <img src="${p.image}" alt="${escapeHtml(p.name)}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async"/>
         </div>
-        <div class="body">
-          <div class="brand">${p.brand}</div>
-          <div class="title">${p.name}</div>
-          <div class="rating">${renderStars(p.rating)} <span class="count">(${p.reviews})</span></div>
-          ${p.price !== undefined ? `<div class="price">$${p.price.toFixed(2)} ${p.oldPrice ? `<span class="old">$${p.oldPrice.toFixed(2)}</span>` : ''}</div>` : ''}
+        <div class="p-6 flex flex-col flex-grow">
+          <div class="text-xs font-label-md text-primary mb-2 tracking-wider uppercase">${escapeHtml(p.brand)}</div>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-2 leading-tight">${escapeHtml(p.name)}</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow line-clamp-2">${escapeHtml(p.description)}</p>
+          <div class="flex justify-between items-end mt-auto">
+            <span class="font-code-sm text-code-sm text-on-surface-variant">${escapeHtml(p.category).replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</span>
+            <span class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-colors">
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </span>
+          </div>
         </div>
       </a>
     `;
   }
 
-  function renderFeatured() {
-    const el = document.getElementById('featured-grid');
-    if (!el) return;
-    el.innerHTML = window.THC_PRODUCTS.slice(0, 8).map(productCard).join('');
-  }
-
-  function renderNewsHome() {
-    const el = document.getElementById('news-grid-home');
-    if (!el) return;
-    // Mock news data or fetch if available. For now, using static content.
-    const news = [
-        { date: 'OCT 24, 2023', title: 'New Canon MegaTank Lineup Arrives', desc: 'Discover the latest high-efficiency printers from Canon, now in stock at Technology Hall.' },
-        { date: 'OCT 20, 2023', title: 'The Future of POS Systems', desc: 'How cloud-integrated POS solutions are transforming retail across Egypt.' },
-        { date: 'OCT 15, 2023', title: 'IT Infrastructure Trends 2024', desc: 'Stay ahead with our latest guide on modernizing your business IT environment.' }
-    ];
-    el.innerHTML = news.map((n, idx) => `
-        <a href="news-detail.html?id=${idx + 1}" class="news-card">
-            <div class="body">
-                <div class="date">${n.date}</div>
-                <h3>${n.title}</h3>
-                <p>${n.desc}</p>
-                <span style="color:var(--accent);font-size:12px;font-weight:700;margin-top:10px;display:block;">READ MORE →</span>
-            </div>
-        </a>
-    `).join('');
-  }
-
-  function renderLatest() {
-    const el = document.getElementById('latest-grid');
-    if (!el) return;
-    el.innerHTML = window.THC_PRODUCTS.slice(8, 16).map(productCard).join('');
-  }
-
+  /* ---------- renderers ---------- */
   function renderCategories() {
     const el = document.getElementById('cat-grid');
-    if (!el) return;
+    if (!el || !window.THC_CATEGORIES) return;
     el.innerHTML = window.THC_CATEGORIES.map(c => `
-      <a class="cat-card" href="products.html?cat=${c.id}">
-        <img src="${c.image}" alt="${c.name}" loading="lazy"/>
-        <div class="overlay">${c.name.toUpperCase()}</div>
+      <a class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-300 group flex flex-col overflow-hidden relative reveal" href="products.html?cat=${c.id}" aria-label="${escapeHtml(c.name)}">
+        <div class="aspect-[4/3] bg-surface-container p-6 flex items-center justify-center relative overflow-hidden">
+          <img src="${c.image}" alt="${escapeHtml(c.name)}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async"/>
+        </div>
+        <div class="p-4 flex items-center justify-between bg-surface-container-lowest">
+          <span class="font-label-md text-label-md text-on-surface">${escapeHtml(c.name).toUpperCase()}</span>
+          <span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </div>
       </a>
     `).join('');
   }
 
-  function renderBrands() {
-    const el = document.getElementById('brand-list');
-    if (!el) return;
-    el.innerHTML = window.THC_BRANDS.map(b => `<div class="brand">${b}</div>`).join('');
+  function renderFeatured() {
+    const el = document.getElementById('featured-grid');
+    if (!el || !window.THC_PRODUCTS) return;
+    el.innerHTML = window.THC_PRODUCTS.slice(0, 8).map(productCard).join('');
   }
 
-  function qs(name) {
-    return new URLSearchParams(location.search).get(name);
+  function renderLatest() {
+    const el = document.getElementById('latest-grid');
+    if (!el || !window.THC_PRODUCTS) return;
+    el.innerHTML = window.THC_PRODUCTS.slice(8, 16).map(productCard).join('');
   }
 
+  function renderNewsHome() {
+    const el = document.getElementById('news-grid-home');
+    if (!el || !window.THC_NEWS) return;
+    el.innerHTML = window.THC_NEWS.slice(0, 3).map(n => newsCard(n)).join('');
+  }
+
+  function renderNewsList() {
+    const el = document.getElementById('news-grid');
+    if (!el || !window.THC_NEWS) return;
+    el.innerHTML = window.THC_NEWS.map(n => newsCard(n)).join('');
+  }
+
+  function newsCard(n) {
+    return `
+      <a href="news-detail.html?id=${n.id}" class="bg-surface rounded-lg border border-outline-variant hover:border-primary transition-colors shadow-sm hover:shadow-md flex flex-col overflow-hidden group reveal">
+        <img src="${n.image}" alt="${escapeHtml(n.title)}" class="aspect-video w-full object-cover bg-surface-container" loading="lazy" decoding="async"/>
+        <div class="p-6 flex flex-col gap-2 flex-grow">
+          <div class="text-primary text-xs font-label-md tracking-wider uppercase">${escapeHtml(n.date)}</div>
+          <h3 class="font-headline-md text-headline-md text-on-surface leading-tight">${escapeHtml(n.title)}</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2">${escapeHtml(n.excerpt)}</p>
+          <span class="text-primary font-label-md text-label-md mt-auto pt-2">Read more →</span>
+        </div>
+      </a>
+    `;
+  }
+
+  function renderNewsDetail() {
+    const el = document.getElementById('article-view');
+    if (!el || !window.THC_NEWS) return;
+    const id = parseInt(qs('id'), 10);
+    const article = window.THC_NEWS.find(n => n.id === id);
+    if (!article) {
+      el.innerHTML = '<h1 class="font-headline-lg text-headline-lg text-on-surface mb-4">Article not found</h1><p class="font-body-md text-body-md text-on-surface-variant">The requested news article could not be located.</p>';
+      return;
+    }
+    document.title = `${article.title} — Technology Hall`;
+    el.innerHTML = `
+      <div class="text-primary font-label-md text-label-md mb-4 uppercase tracking-wider">${escapeHtml(article.date)}</div>
+      <h1 class="font-headline-xl text-headline-xl text-on-surface mb-6 leading-tight">${escapeHtml(article.title)}</h1>
+      <img class="w-full aspect-video object-cover rounded-xl mb-8 bg-surface-container" src="${article.image}" alt="${escapeHtml(article.title)}"/>
+      <div class="space-y-5">
+        ${article.content.map(p => `<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">${escapeHtml(p)}</p>`).join('')}
+      </div>
+    `;
+  }
+
+  /* ---------- products listing with filters + search ---------- */
   function renderProducts() {
     const wrap = document.getElementById('products-grid');
-    if (!wrap) return;
+    if (!wrap || !window.THC_PRODUCTS) return;
+
     const cat = qs('cat');
     const brand = qs('brand');
-    const search = (qs('q') || '').toLowerCase();
-    let list = window.THC_PRODUCTS;
-    if (cat) list = list.filter(p => p.category === cat);
-    if (brand) list = list.filter(p => p.brand === brand);
-    if (search) list = list.filter(p => p.name.toLowerCase().includes(search) || p.brand.toLowerCase().includes(search));
+    const search = (qs('q') || '').trim().toLowerCase();
 
-    const bar = document.getElementById('filter-bar');
-    if (bar) {
-      const cats = window.THC_CATEGORIES;
-      bar.innerHTML =
+    let list = window.THC_PRODUCTS.slice();
+    if (cat)    list = list.filter(p => p.category === cat);
+    if (brand)  list = list.filter(p => p.brand === brand);
+    if (search) list = list.filter(p =>
+      p.name.toLowerCase().includes(search) ||
+      p.brand.toLowerCase().includes(search) ||
+      (p.description || '').toLowerCase().includes(search)
+    );
+
+    // category chips
+    const catBar = document.getElementById('filter-bar');
+    if (catBar) {
+      const cats = window.THC_CATEGORIES || [];
+      catBar.innerHTML =
         `<button class="${!cat ? 'active' : ''}" data-cat="">All</button>` +
-        cats.map(c => `<button class="${cat === c.id ? 'active' : ''}" data-cat="${c.id}">${c.name}</button>`).join('');
-      bar.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+        cats.map(c => `<button class="${cat === c.id ? 'active' : ''}" data-cat="${c.id}">${escapeHtml(c.name)}</button>`).join('');
+      catBar.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
         const c = b.getAttribute('data-cat');
-        location.search = c ? `?cat=${c}` : '';
+        const params = new URLSearchParams(location.search);
+        if (c) params.set('cat', c); else params.delete('cat');
+        location.search = params.toString();
       }));
     }
 
+    // brand chips
+    const brandBar = document.getElementById('brand-bar');
+    if (brandBar) {
+      const brands = window.THC_BRANDS || [];
+      brandBar.innerHTML =
+        `<button class="${!brand ? 'active' : ''}" data-brand="">All Brands</button>` +
+        brands.map(b => `<button class="${brand === b ? 'active' : ''}" data-brand="${b}">${b}</button>`).join('');
+      brandBar.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+        const v = b.getAttribute('data-brand');
+        const params = new URLSearchParams(location.search);
+        if (v) params.set('brand', v); else params.delete('brand');
+        location.search = params.toString();
+      }));
+    }
+
+    // search box
+    const searchInput = document.getElementById('search-input');
+    const searchForm = document.getElementById('search-form');
+    if (searchInput) searchInput.value = search;
+    if (searchForm) {
+      searchForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const v = (searchInput.value || '').trim();
+        const params = new URLSearchParams(location.search);
+        if (v) params.set('q', v); else params.delete('q');
+        location.search = params.toString();
+      });
+    }
+
+    // title
     const h = document.getElementById('products-title');
     if (h) {
       if (cat) {
-        const c = window.THC_CATEGORIES.find(x => x.id === cat);
+        const c = (window.THC_CATEGORIES || []).find(x => x.id === cat);
         h.textContent = c ? c.name : 'Products';
+      } else if (brand) {
+        h.textContent = `${brand} Products`;
+      } else if (search) {
+        h.textContent = `Search: "${search}"`;
       } else {
         h.textContent = 'All Products';
       }
     }
 
+    const countEl = document.getElementById('products-count');
+    if (countEl) countEl.textContent = `${list.length} product${list.length === 1 ? '' : 's'}`;
+
     if (list.length === 0) {
-      wrap.innerHTML = '<p style="text-align:center;color:#888;padding:40px;">No products found.</p>';
+      wrap.innerHTML = `
+        <div class="col-span-full text-center py-16 bg-surface-container-low rounded-xl">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-2">No products match your filters</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-6">Try clearing the search or choosing a different category.</p>
+          <a class="inline-flex items-center gap-2 bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded hover:bg-surface-tint transition-all" href="products.html">View all products</a>
+        </div>`;
     } else {
       wrap.innerHTML = list.map(productCard).join('');
     }
   }
 
+  /* ---------- product detail ---------- */
   function renderProductDetail() {
     const wrap = document.getElementById('pdp');
-    if (!wrap) return;
+    if (!wrap || !window.THC_PRODUCTS) return;
     const id = qs('id');
     const p = window.THC_PRODUCTS.find(x => x.id === id);
-    if (!p) { wrap.innerHTML = '<p style="text-align:center">Product not found.</p>'; return; }
-    document.title = `${p.name} — Technology Hall`;
-    wrap.innerHTML = `
-      <div class="gallery"><img src="${p.image}" alt="${p.name}"/></div>
-      <div class="info">
-        <div class="brand">${p.brand}</div>
-        <h1>${p.name}</h1>
-        <div class="rating">${renderStars(p.rating)} <span class="count" style="color:#888">(${p.reviews} reviews)</span></div>
-        ${p.price !== undefined ? `<div class="price">$${p.price.toFixed(2)} ${p.oldPrice ? `<span class="old">$${p.oldPrice.toFixed(2)}</span>` : ''}</div>` : ''}
-        <p class="desc">${p.description}</p>
-        <div class="qty">
-          <button id="qty-dec" type="button">−</button>
-          <input id="qty-val" type="text" value="1" readonly/>
-          <button id="qty-inc" type="button">+</button>
-        </div>
-        <button class="btn" id="add-to-cart">Add to Cart</button>
-        <div style="margin-top:24px;color:#888;font-size:13px;">
-          <div><strong>Category:</strong> ${(window.THC_CATEGORIES.find(c => c.id === p.category) || {}).name || p.category}</div>
-          <div><strong>SKU:</strong> ${p.id.toUpperCase()}</div>
-        </div>
-      </div>
-    `;
-    const val = document.getElementById('qty-val');
-    document.getElementById('qty-dec').onclick = () => { val.value = Math.max(1, parseInt(val.value || 1) - 1); };
-    document.getElementById('qty-inc').onclick = () => { val.value = parseInt(val.value || 1) + 1; };
-    document.getElementById('add-to-cart').onclick = () => {
-      Cart.add(p.id, parseInt(val.value || 1));
-      showToast('Added to cart');
-    };
-  }
-
-  function showToast(msg) {
-    let t = document.getElementById('thc-toast');
-    if (!t) {
-      t = document.createElement('div');
-      t.id = 'thc-toast';
-      t.style.cssText = 'position:fixed;bottom:30px;right:30px;background:#222;color:#fff;padding:14px 22px;border-radius:4px;z-index:9999;box-shadow:0 6px 20px rgba(0,0,0,.25);font-size:14px;transition:opacity .3s;opacity:0;';
-      document.body.appendChild(t);
-    }
-    t.textContent = msg;
-    t.style.opacity = '1';
-    clearTimeout(t._t);
-    t._t = setTimeout(() => { t.style.opacity = '0'; }, 2200);
-  }
-  window.THC_toast = showToast;
-
-  function renderCart() {
-    const wrap = document.getElementById('cart-table-body');
-    if (!wrap) return;
-    const items = Cart.load();
-    const products = window.THC_PRODUCTS;
-    const total = Cart.total();
-    const totalsEl = document.getElementById('cart-totals');
-
-    if (items.length === 0) {
-      document.getElementById('cart-wrap').innerHTML = `
-        <div class="cart-empty">
-          <h2 style="margin-bottom:14px;">Your cart is empty</h2>
-          <p style="margin-bottom:24px;">Browse our products and find something you love.</p>
-          <a class="btn" href="products.html">Shop Now</a>
+    if (!p) {
+      wrap.innerHTML = `
+        <div class="text-center py-16">
+          <h3 class="font-headline-lg text-headline-lg text-on-surface mb-2">Product not found</h3>
+          <a class="inline-flex items-center gap-2 bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded hover:bg-surface-tint transition-all" href="products.html">Back to products</a>
         </div>`;
       return;
     }
 
-    wrap.innerHTML = items.map(it => {
-      const p = products.find(x => x.id === it.id);
-      if (!p) return '';
-      return `
-        <tr data-id="${p.id}">
-          <td>
-            <div class="ci">
-              <img src="${p.image}" alt=""/>
-              <div><strong>${p.name}</strong><br/><span style="color:#888;font-size:12px">${p.brand}</span></div>
-            </div>
-          </td>
-          <td>${p.price !== undefined ? `$${p.price.toFixed(2)}` : '—'}</td>
-          <td>
-            <div class="qty">
-              <button class="dec" type="button">−</button>
-              <input class="qv" value="${it.qty}" readonly/>
-              <button class="inc" type="button">+</button>
-            </div>
-          </td>
-          <td>${p.price !== undefined ? `$${(p.price * it.qty).toFixed(2)}` : '—'}</td>
-          <td><button class="remove">✕</button></td>
-        </tr>
-      `;
-    }).join('');
+    document.title = `${p.name} — Technology Hall`;
+    const cat = (window.THC_CATEGORIES || []).find(c => c.id === p.category);
 
-    totalsEl.innerHTML = `
-      <div class="line"><span>Subtotal</span><span>$${total.toFixed(2)}</span></div>
-      <div class="line"><span>Shipping</span><span>Free</span></div>
-      <div class="line total"><span>Total</span><span>$${total.toFixed(2)}</span></div>
-      <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;">
-        <a class="btn outline" style="background:#fff;color:#222;border:2px solid #222" href="products.html">Continue Shopping</a>
-        <button class="btn" id="checkout-btn">Checkout</button>
+    wrap.innerHTML = `
+      <nav class="flex flex-wrap gap-2 items-center text-sm text-on-surface-variant mb-8" aria-label="Breadcrumb">
+        <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+        <a class="hover:text-primary transition-colors" href="products.html">Products</a>
+        ${cat ? `<span class="material-symbols-outlined text-[16px]">chevron_right</span><a class="hover:text-primary transition-colors" href="products.html?cat=${cat.id}">${escapeHtml(cat.name)}</a>` : ''}
+        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+        <span class="text-on-surface font-semibold">${escapeHtml(p.name)}</span>
+      </nav>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-7">
+          <div class="bg-surface-container rounded-xl aspect-[4/3] flex items-center justify-center p-8 relative overflow-hidden group">
+            <div class="absolute inset-0 bg-gradient-to-tr from-surface-variant/30 to-transparent pointer-events-none"></div>
+            <img src="${p.image}" alt="${escapeHtml(p.name)}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"/>
+          </div>
+        </div>
+        <div class="lg:col-span-5 flex flex-col pt-2">
+          <div class="mb-4 flex items-center gap-3 flex-wrap">
+            <span class="bg-tertiary-container/10 text-tertiary-container border border-tertiary-container/20 font-label-md text-label-md px-3 py-1 rounded-full inline-flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+              ${escapeHtml(p.brand)}
+            </span>
+            <span class="font-code-sm text-code-sm text-on-surface-variant uppercase tracking-widest">SKU: ${p.id.toUpperCase()}</span>
+          </div>
+          <h1 class="font-headline-xl text-headline-xl text-on-surface mb-4">${escapeHtml(p.name)}</h1>
+          <p class="font-body-lg text-body-lg text-on-surface-variant mb-6 leading-relaxed">${escapeHtml(p.description)}</p>
+          <div class="bg-surface p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col gap-4 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full pointer-events-none"></div>
+            <div class="flex flex-col gap-3">
+              <a class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded hover:bg-surface-tint transition-all flex items-center justify-center gap-2 group" href="${quoteHref(p)}">
+                Request a Quote
+                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </a>
+              <a class="w-full bg-transparent border border-outline text-on-surface font-label-md text-label-md py-3 rounded hover:bg-surface-container transition-colors flex items-center justify-center gap-2" href="products.html">
+                Continue Browsing
+              </a>
+            </div>
+            <div class="flex items-center justify-center gap-3 font-code-sm text-code-sm text-on-surface-variant">
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary-container">check_circle</span> In Stock</span>
+              <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+              <span>Ships in 1–2 days</span>
+            </div>
+          </div>
+          <dl class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-outline-variant/50 text-sm">
+            <div><dt class="text-on-surface-variant text-xs uppercase tracking-wider mb-1">Category</dt><dd class="text-on-surface font-semibold">${cat ? escapeHtml(cat.name) : escapeHtml(p.category)}</dd></div>
+            <div><dt class="text-on-surface-variant text-xs uppercase tracking-wider mb-1">Brand</dt><dd class="text-on-surface font-semibold">${escapeHtml(p.brand)}</dd></div>
+            <div><dt class="text-on-surface-variant text-xs uppercase tracking-wider mb-1">SKU</dt><dd class="text-on-surface font-semibold">${p.id.toUpperCase()}</dd></div>
+            <div><dt class="text-on-surface-variant text-xs uppercase tracking-wider mb-1">Availability</dt><dd class="text-on-surface font-semibold">In stock</dd></div>
+          </dl>
+        </div>
       </div>
     `;
 
-    wrap.querySelectorAll('tr').forEach(tr => {
-      const id = tr.getAttribute('data-id');
-      tr.querySelector('.inc').onclick = () => {
-        const it = Cart.load().find(i => i.id === id);
-        Cart.setQty(id, it.qty + 1); renderCart();
-      };
-      tr.querySelector('.dec').onclick = () => {
-        const it = Cart.load().find(i => i.id === id);
-        Cart.setQty(id, it.qty - 1); renderCart();
-      };
-      tr.querySelector('.remove').onclick = () => { Cart.remove(id); renderCart(); };
-    });
-    document.getElementById('checkout-btn').onclick = () => location.href = 'checkout.html';
+    renderRelated(p);
   }
 
-  function initHeader() {
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.nav');
-    if (burger && nav) burger.onclick = () => nav.classList.toggle('open');
-    const cartBtn = document.querySelector('.cart-btn');
-    if (cartBtn) cartBtn.onclick = () => location.href = 'cart.html';
-    updateCartBadge();
+  function renderRelated(current) {
+    const wrap = document.getElementById('related-grid');
+    if (!wrap || !window.THC_PRODUCTS) return;
+    const related = window.THC_PRODUCTS
+      .filter(p => p.id !== current.id && (p.category === current.category || p.brand === current.brand))
+      .slice(0, 4);
+    if (related.length === 0) { wrap.parentElement.style.display = 'none'; return; }
+    wrap.innerHTML = related.map(productCard).join('');
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initHeader();
+  /* ---------- scroll reveal ---------- */
+  function initReveal() {
+    const items = document.querySelectorAll('.reveal');
+    if (!items.length) return;
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      items.forEach(el => el.classList.add('in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(el => io.observe(el));
+  }
+
+  /* ---------- init ---------- */
+  function init() {
     renderCategories();
     renderFeatured();
     renderLatest();
-    renderBrands();
     renderNewsHome();
+    renderNewsList();
+    renderNewsDetail();
     renderProducts();
     renderProductDetail();
-    renderCart();
-  });
+    requestAnimationFrame(initReveal);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();

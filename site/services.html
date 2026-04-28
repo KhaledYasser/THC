@@ -1,87 +1,144 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Services — Technology Hall</title>
-<link rel="stylesheet" href="css/style.css"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Services — Technology Hall</title>
+  <meta name="description" content="Technology Hall services: supply &amp; distribution, technical support, enterprise solutions, managed print, network installation and training."/>
+  <meta name="theme-color" content="#0001bb"/>
+  <link rel="icon" type="image/png" href="images/brand-hp.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+  <script>tailwind.config = window.THC_TAILWIND_CONFIG;</script>
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
-<body>
-<header class="header">
-  <a class="logo" href="index.html">TECHNOLOGY HALL</a>
-  <nav class="nav">
-    <a href="index.html">HOME</a><a href="products.html">PRODUCTS</a>
-    <a href="categories.html">CATEGORIES</a><a href="services.html" class="active">SERVICES</a>
-    <a href="partners.html">PARTNERS</a><a href="news.html">NEWS</a>
-  </nav>
-  <div style="display:flex;align-items:center;gap:10px;">
-    <button class="burger" aria-label="Menu">☰</button>
-  </div>
-</header>
+<body data-page="services" class="bg-background text-on-background antialiased">
 
-<div class="page-hero"><h1>Our Services</h1><p>Comprehensive IT services tailored to your business.</p></div>
+<header id="site-header"></header>
 
-<section class="section dark">
-  <div class="services">
-    <div class="service">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 7h13v10H3zM16 10h4l2 3v4h-6zM5.5 17a2 2 0 104 0M16.5 17a2 2 0 104 0"/></svg></div>
-      <h3>Supply &amp; Distribution</h3>
-      <p>We supply and distribute a comprehensive range of IT products, printers, scanners, and accessories across Egypt, ensuring timely delivery and reliable service to businesses of all sizes.</p>
+<main>
+  <!-- Hero -->
+  <section class="relative py-24 px-6 bg-inverse-surface overflow-hidden">
+    <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 70% 30%, #0000ff 0%, transparent 60%);"></div>
+    <div class="max-w-7xl mx-auto relative z-10 text-center">
+      <h1 class="font-headline-xl text-headline-xl text-on-error mb-4">Enterprise-Grade <span class="text-primary">Services</span></h1>
+      <p class="font-body-lg text-body-lg text-secondary-fixed-dim max-w-2xl mx-auto">Delivering comprehensive technology solutions to power modern businesses and smart environments.</p>
     </div>
-    <div class="service">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 01-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 015.6-5.6l-2.5 2.5-2.1-2.1 2.6-2.4z"/></svg></div>
-      <h3>Technical Support</h3>
-      <p>Our certified technicians provide expert installation, maintenance, and repair services for all the products we carry. We offer both on-site and remote support to minimize downtime.</p>
-    </div>
-    <div class="service">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 21V7l9-4 9 4v14M9 21V11h6v10M3 21h18"/></svg></div>
-      <h3>Enterprise Solutions</h3>
-      <p>From small offices to large enterprises, we design and implement complete IT infrastructure solutions including networking, printing fleets, document management, and smart office automation.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="section-head"><h2>Additional Services</h2><div class="underline"></div></div>
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:30px;">
-    <div style="padding:24px;border:1px solid #eee;border-radius:4px;">
-      <h3 style="margin-bottom:10px;">Managed Print Services</h3>
-      <p style="color:#666;">Optimize and manage your entire print environment with our MPS program. Reduce costs, improve productivity, and ensure your fleet is always ready.</p>
+  <!-- Core Services -->
+  <section class="py-16 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Core Services</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant">What we do best for our clients across Egypt.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-inverse-surface rounded-xl p-10 text-center border border-white/10 reveal">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="material-symbols-outlined text-primary text-[32px]">local_shipping</span>
+          </div>
+          <h3 class="text-white text-xl font-bold mb-3">Supply & Distribution</h3>
+          <p class="text-secondary-fixed-dim leading-relaxed">A comprehensive range of IT products, printers, scanners and accessories, distributed across Egypt with timely delivery and reliable service for businesses of all sizes.</p>
+        </div>
+        <div class="bg-inverse-surface rounded-xl p-10 text-center border border-white/10 reveal">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="material-symbols-outlined text-primary text-[32px]">build</span>
+          </div>
+          <h3 class="text-white text-xl font-bold mb-3">Technical Support</h3>
+          <p class="text-secondary-fixed-dim leading-relaxed">Our certified technicians provide expert installation, maintenance and repair services. We offer both on-site and remote support to minimize downtime for your operation.</p>
+        </div>
+        <div class="bg-inverse-surface rounded-xl p-10 text-center border border-white/10 reveal">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="material-symbols-outlined text-primary text-[32px]">apartment</span>
+          </div>
+          <h3 class="text-white text-xl font-bold mb-3">Enterprise Solutions</h3>
+          <p class="text-secondary-fixed-dim leading-relaxed">From small offices to large enterprises, we design and implement complete IT infrastructure — networking, printing fleets, document management and smart office automation.</p>
+        </div>
+      </div>
     </div>
-    <div style="padding:24px;border:1px solid #eee;border-radius:4px;">
-      <h3 style="margin-bottom:10px;">Network Installation</h3>
-      <p style="color:#666;">Design and install secure, high-performance wired and wireless networks for offices, hotels, warehouses, and retail stores.</p>
-    </div>
-    <div style="padding:24px;border:1px solid #eee;border-radius:4px;">
-      <h3 style="margin-bottom:10px;">Video Surveillance</h3>
-      <p style="color:#666;">End-to-end CCTV solutions — from camera selection and placement to NVR configuration and remote monitoring.</p>
-    </div>
-    <div style="padding:24px;border:1px solid #eee;border-radius:4px;">
-      <h3 style="margin-bottom:10px;">Training &amp; Consultation</h3>
-      <p style="color:#666;">Our experts train your team on the products you buy and help you plan future IT investments aligned with your business goals.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<footer class="footer">
-  <div class="footer-grid">
-    <div><div class="logo" style="color:#fff;">TECHNOLOGY HALL</div><p class="desc">Leading IT supplier in Egypt.</p></div>
-    <div><h4>SHOP</h4><ul><li><a href="products.html">All Products</a></li></ul></div>
-    <div><h4>COMPANY</h4><ul><li><a href="services.html">Services</a></li><li><a href="partners.html">Partners</a></li></ul></div>
-    <div>
-      <h4>CONTACT</h4>
-      <ul>
-        <li>📍 27 El Maraghy St,. Agouza Giza</li>
-        <li>📞 +20 2 1234 5678</li>
-        <li>✉ Ino@thc-egypt.org</li>
-        <li>🌐 <a href="https://thc-egypt.org" target="_blank" style="color:inherit;">thc-egypt.org</a></li>
-      </ul>
+  <!-- Additional Services -->
+  <section class="py-16 bg-surface-container-low border-y border-outline-variant">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Additional Services</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant">Specialized offerings to complete your technology ecosystem.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-surface-container-lowest rounded-lg p-8 border border-outline-variant/30 shadow-sm hover:shadow-md hover:border-primary/30 transition-all reveal">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Managed Print Services</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Optimize and manage your entire print environment with our MPS program. Reduce cost-per-page, improve uptime and keep your fleet always ready.</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-lg p-8 border border-outline-variant/30 shadow-sm hover:shadow-md hover:border-primary/30 transition-all reveal">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Network Installation</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Design and deployment of secure, high-performance wired and wireless networks for offices, hotels, warehouses and retail stores.</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-lg p-8 border border-outline-variant/30 shadow-sm hover:shadow-md hover:border-primary/30 transition-all reveal">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Video Surveillance</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">End-to-end CCTV solutions — from camera selection and placement to NVR configuration and remote monitoring.</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-lg p-8 border border-outline-variant/30 shadow-sm hover:shadow-md hover:border-primary/30 transition-all reveal">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Training & Consultation</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Our experts train your team on the products you buy and help you plan future IT investments aligned with your business goals.</p>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="bottom">© <span id="yr"></span> Technology Hall.</div>
-</footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
-<script src="js/data.js"></script>
-<script src="js/app.js"></script>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="py-16 bg-background">
+    <div class="max-w-2xl mx-auto px-6">
+      <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/30 p-8 md:p-10">
+        <div class="text-center mb-8">
+          <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Contact Our Experts</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant">Ready to upgrade your infrastructure? Let's discuss your specific requirements.</p>
+        </div>
+        <form action="mailto:info@thc-egypt.org" method="post" enctype="text/plain" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block font-label-md text-label-md text-on-surface mb-2" for="name">Full Name</label>
+              <input class="w-full bg-white border border-outline-variant rounded-lg px-4 py-3 text-sm text-on-surface focus:border-primary focus:ring-0 outline-none transition-colors" id="name" name="name" placeholder="Jane Doe" type="text"/>
+            </div>
+            <div>
+              <label class="block font-label-md text-label-md text-on-surface mb-2" for="email">Email</label>
+              <input class="w-full bg-white border border-outline-variant rounded-lg px-4 py-3 text-sm text-on-surface focus:border-primary focus:ring-0 outline-none transition-colors" id="email" name="email" placeholder="jane@company.com" type="email"/>
+            </div>
+          </div>
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-2" for="service">Interested Service</label>
+            <select class="w-full bg-white border border-outline-variant rounded-lg px-4 py-3 text-sm text-on-surface focus:border-primary focus:ring-0 outline-none transition-colors" id="service" name="service">
+              <option>Supply & Distribution</option>
+              <option>Technical Support</option>
+              <option>Enterprise Solutions</option>
+              <option>Managed Print Services</option>
+              <option>Network Installation</option>
+              <option>Video Surveillance</option>
+              <option>Training & Consultation</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-2" for="message">Project Details</label>
+            <textarea class="w-full bg-white border border-outline-variant rounded-lg px-4 py-3 text-sm text-on-surface focus:border-primary focus:ring-0 outline-none transition-colors resize-none" id="message" name="message" placeholder="Describe your project scope..." rows="4"></textarea>
+          </div>
+          <button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded hover:bg-surface-tint transition-all flex items-center justify-center gap-2" type="submit">
+            Submit Request <span class="material-symbols-outlined text-[18px]">send</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="js/data.js" defer></script>
+<script src="js/layout.js" defer></script>
+<script src="js/app.js" defer></script>
 </body>
 </html>
