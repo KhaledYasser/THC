@@ -6,12 +6,6 @@ DOMAIN="thc-egypt.org"
 BUCKET="thc-egypt.org"
 REGION="us-east-1"
 HOSTED_ZONE_ID="Z01691553VW8I2G65I833"
-LAMBDA_NAME="thc-stripe-checkout"
-LAMBDA_ROLE_NAME="thc-stripe-checkout-role"
-
-# Optional: export STRIPE_SECRET_KEY=sk_test_... before running to enable real Stripe Checkout.
-# If unset/invalid, the Lambda falls back to a self-hosted demo checkout page.
-STRIPE_SECRET_KEY="${STRIPE_SECRET_KEY:-}"
 
 say() { echo -e "\033[1;32m==>\033[0m $*"; }
 fail() { echo -e "\033[1;31mERROR:\033[0m $*" >&2; exit 1; }
@@ -69,59 +63,13 @@ aws s3api put-public-access-block --bucket "$BUCKET" \
 # Set website hosting as well (optional; CloudFront will use S3 REST origin via OAC)
 aws s3 website "s3://$BUCKET/" --index-document index.html --error-document index.html || true
 
-# ===== 3. Lambda for Stripe Checkout =====
-say "Setting up Lambda $LAMBDA_NAME"
-# IAM role
-ROLE_ARN=$(aws iam get-role --role-name "$LAMBDA_ROLE_NAME" --query "Role.Arn" --output text 2>/dev/null || true)
-if [ -z "$ROLE_ARN" ] || [ "$ROLE_ARN" = "None" ]; then
-  cat > /tmp/thc-trust.json <<'EOF'
-{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"Service":"lambda.amazonaws.com"},"Action":"sts:AssumeRole"}]}
-EOF
-  ROLE_ARN=$(aws iam create-role --role-name "$LAMBDA_ROLE_NAME" --assume-role-policy-document file:///tmp/thc-trust.json --query "Role.Arn" --output text)
-  aws iam attach-role-policy --role-name "$LAMBDA_ROLE_NAME" --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-  sleep 10
-fi
-say "Lambda role: $ROLE_ARN"
-
-# Zip Lambda code
-rm -f /tmp/thc-lambda.zip
-(cd lambda && zip -q -r /tmp/thc-lambda.zip index.mjs)
-
-if aws lambda get-function --function-name "$LAMBDA_NAME" >/dev/null 2>&1; then
-  say "Updating Lambda code"
-  aws lambda update-function-code --function-name "$LAMBDA_NAME" --zip-file fileb:///tmp/thc-lambda.zip --publish >/dev/null
-  aws lambda wait function-updated --function-name "$LAMBDA_NAME"
-  aws lambda update-function-configuration --function-name "$LAMBDA_NAME" \
-    --environment "Variables={STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY,ALLOWED_ORIGIN=https://$DOMAIN}" >/dev/null
-else
-  say "Creating Lambda function"
-  aws lambda create-function --function-name "$LAMBDA_NAME" \
-    --runtime nodejs20.x --handler index.handler --role "$ROLE_ARN" \
-    --zip-file fileb:///tmp/thc-lambda.zip --timeout 15 \
-    --environment "Variables={STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY,ALLOWED_ORIGIN=https://$DOMAIN}" >/dev/null
-fi
-
-# Function URL
-FN_URL=$(aws lambda get-function-url-config --function-name "$LAMBDA_NAME" --query "FunctionUrl" --output text 2>/dev/null || true)
-if [ -z "$FN_URL" ] || [ "$FN_URL" = "None" ]; then
-  FN_URL=$(aws lambda create-function-url-config --function-name "$LAMBDA_NAME" --auth-type NONE \
-    --cors "AllowOrigins=*,AllowMethods=POST,AllowHeaders=content-type" --query "FunctionUrl" --output text)
-  aws lambda add-permission --function-name "$LAMBDA_NAME" --statement-id "AllowPublicInvoke" \
-    --action "lambda:InvokeFunctionUrl" --principal "*" --function-url-auth-type NONE >/dev/null 2>&1 || true
-fi
-say "Lambda Function URL: $FN_URL"
-
-# ===== 4. Upload site with runtime config.js =====
-say "Generating config.js and uploading site"
-cat > site/config.js <<EOF
-window.THC_CHECKOUT_URL = "$FN_URL";
-EOF
-
+# ===== 3. Upload site =====
+say "Uploading site to S3"
 aws s3 sync site/ "s3://$BUCKET/" --delete \
   --cache-control "public, max-age=300" \
   --exclude "*.DS_Store"
 
-# ===== 5. CloudFront distribution =====
+# ===== 4. CloudFront distribution =====
 say "Setting up CloudFront distribution"
 DIST_ID=$(aws cloudfront list-distributions \
   --query "DistributionList.Items[?Aliases.Items != null && contains(Aliases.Items, '$DOMAIN')].Id | [0]" \
@@ -186,7 +134,7 @@ else
 fi
 say "Distribution: $DIST_ID  $DIST_DOMAIN"
 
-# ===== 6. S3 bucket policy allowing CloudFront OAC =====
+# ===== 5. S3 bucket policy allowing CloudFront OAC =====
 say "Applying S3 bucket policy for CloudFront OAC"
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 cat > /tmp/thc-bucket-policy.json <<EOF
@@ -204,7 +152,7 @@ cat > /tmp/thc-bucket-policy.json <<EOF
 EOF
 aws s3api put-bucket-policy --bucket "$BUCKET" --policy file:///tmp/thc-bucket-policy.json
 
-# ===== 7. Route53 A-alias record =====
+# ===== 6. Route53 A-alias record =====
 say "Creating Route53 A-alias record $DOMAIN -> $DIST_DOMAIN"
 cat > /tmp/thc-dns.json <<EOF
 {"Changes":[{"Action":"UPSERT","ResourceRecordSet":{
@@ -216,5 +164,4 @@ aws route53 change-resource-record-sets --hosted-zone-id "$HOSTED_ZONE_ID" --cha
 
 say "===== DEPLOYMENT COMPLETE ====="
 say "Site: https://$DOMAIN"
-say "Lambda URL: $FN_URL"
 say "CloudFront: $DIST_DOMAIN ($DIST_ID)"
