@@ -63,7 +63,6 @@
           <div class="brand">${p.brand}</div>
           <div class="title">${p.name}</div>
           <div class="rating">${renderStars(p.rating)} <span class="count">(${p.reviews})</span></div>
-          ${p.price !== undefined ? `<div class="price">$${p.price.toFixed(2)} ${p.oldPrice ? `<span class="old">$${p.oldPrice.toFixed(2)}</span>` : ''}</div>` : ''}
         </div>
       </a>
     `;
@@ -176,26 +175,17 @@
         <div class="brand">${p.brand}</div>
         <h1>${p.name}</h1>
         <div class="rating">${renderStars(p.rating)} <span class="count" style="color:#888">(${p.reviews} reviews)</span></div>
-        ${p.price !== undefined ? `<div class="price">$${p.price.toFixed(2)} ${p.oldPrice ? `<span class="old">$${p.oldPrice.toFixed(2)}</span>` : ''}</div>` : ''}
         <p class="desc">${p.description}</p>
-        <div class="qty">
-          <button id="qty-dec" type="button">−</button>
-          <input id="qty-val" type="text" value="1" readonly/>
-          <button id="qty-inc" type="button">+</button>
-        </div>
-        <button class="btn" id="add-to-cart">Add to Cart</button>
+        <button class="btn" id="contact-btn">Contact Us for Inquiry</button>
         <div style="margin-top:24px;color:#888;font-size:13px;">
           <div><strong>Category:</strong> ${(window.THC_CATEGORIES.find(c => c.id === p.category) || {}).name || p.category}</div>
           <div><strong>SKU:</strong> ${p.id.toUpperCase()}</div>
         </div>
       </div>
     `;
-    const val = document.getElementById('qty-val');
-    document.getElementById('qty-dec').onclick = () => { val.value = Math.max(1, parseInt(val.value || 1) - 1); };
-    document.getElementById('qty-inc').onclick = () => { val.value = parseInt(val.value || 1) + 1; };
-    document.getElementById('add-to-cart').onclick = () => {
-      Cart.add(p.id, parseInt(val.value || 1));
-      showToast('Added to cart');
+    const btn = document.getElementById('contact-btn');
+    if (btn) btn.onclick = () => {
+      location.href = `mailto:info@thc-egypt.org?subject=Inquiry: ${p.name} (${p.id.toUpperCase()})`;
     };
   }
 
@@ -286,9 +276,6 @@
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav');
     if (burger && nav) burger.onclick = () => nav.classList.toggle('open');
-    const cartBtn = document.querySelector('.cart-btn');
-    if (cartBtn) cartBtn.onclick = () => location.href = 'cart.html';
-    updateCartBadge();
   }
 
   document.addEventListener('DOMContentLoaded', () => {

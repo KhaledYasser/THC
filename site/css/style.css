@@ -38,8 +38,7 @@ button { cursor: pointer; font-family: inherit; }
 .nav a { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; opacity: .9; transition: color .2s; }
 .nav a:hover, .nav a.active { color: var(--accent); }
 .cart-btn {
-  background: transparent; color: var(--fg); border: none;
-  position: relative; font-size: 22px; padding: 6px 10px;
+  display: none;
 }
 .cart-count {
   position: absolute; top: -4px; right: -4px;
@@ -219,8 +218,8 @@ button { cursor: pointer; font-family: inherit; }
 .product-card .title { font-size: 15px; font-weight: 600; color: #222; margin-bottom: 8px; min-height: 42px; }
 .rating { color: var(--accent); font-size: 13px; margin-bottom: 6px; }
 .rating .count { color: #888; margin-left: 4px; }
-.price { font-weight: 800; font-size: 18px; color: #222; margin-top: auto; }
-.price .old { color: #999; text-decoration: line-through; font-weight: 400; font-size: 14px; margin-left: 6px; }
+.price { display: none; }
+.price .old { display: none; }
 
 /* ============ Services ============ */
 .services {
